@@ -36,4 +36,7 @@ drwxr-xr-x  3 a       a         4096 Feb  9 00:06 webfuzz_api
 -rw-r--r--  1 a       a        10868 Oct  7 04:29 .zshrc   
     """
     parsed_command = parse_ls(command_output)
-    assert parsed_command
+    assert parsed_command[1]['Permissions'] == 'drwxr-xr-x'
+    assert parsed_command[2]['Group'] == 'a'
+    assert parsed_command[1]['Size'] == '4096'
+    assert parsed_command[14]['LastModified'] == 'Nov 28 15:04'
