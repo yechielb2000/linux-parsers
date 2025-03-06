@@ -1,9 +1,10 @@
 import re
+from typing import Any, List, Dict
 
 from linux_parsers.parsers.exceptions import UnexpectedParseException
 
 
-def parse_ip(command_output: str):
+def parse_ip_a(command_output: str) -> list[Any] | None:
     """parse `ip a` command output"""
     interfaces_names = re.findall(r'^\d:\s(.+):', command_output, flags=re.MULTILINE)
     interfaces = re.split(r'^\d:\s.+:', command_output, flags=re.MULTILINE)
@@ -86,3 +87,19 @@ def _parse_link_layer_info(link_layer_info: str) -> dict:
     )
     regex_result = re.match(pattern, link_layer_info)
     return regex_result.groupdict() if regex_result else {}
+
+
+def parse_ip_r(command_output: str) -> list[dict[str, str | Any]]:
+    """
+    parse `ip route` command output.
+    """
+    route_pattern = re.compile(r"""
+        (?P<type>default|blackhole|unreachable|prohibit|broadcast|\d+\.\d+\.\d+\.\d+/\d+)  # Route type or destination
+        (?:\s+via\s+(?P<via>\d+\.\d+\.\d+\.\d+))?  # Optional next-hop IP
+        (?:\s+dev\s+(?P<dev>\S+))?  # Optional interface (e.g., eth0)
+        (?:\s+proto\s+(?P<proto>\S+))?  # Optional protocol (e.g., kernel, static, dhcp)
+        (?:\s+scope\s+(?P<scope>\S+))?  # Optional scope (e.g., link)
+        (?:\s+src\s+(?P<src>\d+\.\d+\.\d+\.\d+))?  # Optional source IP
+        (?:\s+metric\s+(?P<metric>\d+))?  # Optional metric
+    """, re.VERBOSE)
+    return [match.groupdict() for match in route_pattern.finditer(command_output)]
