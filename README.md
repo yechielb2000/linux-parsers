@@ -8,7 +8,6 @@
 - Packet Capture (tcpdump, Wireshark/tshark)
 - Network Configuration (ifconfig, ip, nmcli)
 - DNS Lookup (dig, nslookup, host)
-- Port Scanning (nmap, netcat)
 - Network Traffic Analysis (iftop, bmon)
 - Firewall Management (iptables, nftables, ufw)
 - Routing Table Management (route, ip route)
