@@ -24,6 +24,7 @@
 - Filesystem Mounting (mount, umount, fstab)
 - File Integrity Checking (md5sum, sha256sum)
 - File Synchronization (rsync, scp, sftp)
+- File Metadata (stat, file)
 
 **Process Management Products:**
 - Process Listing (ps, top, htop)
