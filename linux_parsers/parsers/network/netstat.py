@@ -12,7 +12,7 @@ def parse_netstat(command_output: str) -> list[dict[str, str | Any]]:
         "(?P<SendQ>\d+)\s+"
         "(?P<LocalAddress>\S+:\S+)\s+"
         "(?P<ForeignAddress>\S+:\S+)\s+"
-        "(?:(?P<State>[A-Z]+))?\s+"
+        "(?:(?P<State>[-_A-Z]+))?\s+"
         "(?:(?P<PID>\d+)/(?P<ProgramName>\w+))?"
     )
     return [record.groupdict() for record in record_pattern.finditer(command_output)]
