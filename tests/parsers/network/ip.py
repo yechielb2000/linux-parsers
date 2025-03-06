@@ -1,39 +1,37 @@
-from linux_parsers.parsers.network.ip import parse_ip_a, parse_ip_r, parse_ip_n
+from linux_parsers.parsers.network.ip import parse_ip_r, parse_ip_n, parse_ip_a
 
 
-def test_ip():
+def test_ip_a():
     command_output = """
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default 
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet 10.255.255.254/32 brd 10.255.255.254 scope global lo
+    inet6 ::1/128 scope host 
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
+
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 00:15:5d:0c:94:bc brd ff:ff:ff:ff:ff:ff
-    inet 172.22.240.176/20 brd 172.22.255.255 scope global eth0
+    link/ether 00:1a:2b:3c:4d:5e brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.100/24 brd 192.168.1.255 scope global dynamic eth0
+       valid_lft 86400sec preferred_lft 86400sec
+    inet6 fe80::1a2b:3c4d:5e6f:7g8h/64 scope link 
        valid_lft forever preferred_lft forever
-    inet6 fe80::215:5dff:fe0c:94bc/64 scope link
-       valid_lft forever preferred_lft forever
+
+3: wlan0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether aa:bb:cc:dd:ee:ff brd ff:ff:ff:ff:ff:ff
     """
     parsed_result = parse_ip_a(command_output)
-    expected_result = [
-        {
-            'inets': [
-                {'brd': None, 'ip': '127.0.0.1/8', 'preferred_lft': 'forever', 'scope': 'host lo', 'type': 'inet',
-                 'valid_lft': 'forever'},
-                {'brd': '10.255.255.254', 'ip': '10.255.255.254/32', 'preferred_lft': 'forever', 'scope': 'global lo',
-                 'type': 'inet', 'valid_lft': 'forever'},
-                {'brd': None, 'ip': '::1/128', 'preferred_lft': 'forever', 'scope': 'host', 'type': 'inet6',
-                 'valid_lft': 'forever'}],
-            'info': {'flags': 'LOOPBACK,UP,LOWER_UP', 'group': 'default', 'mtu': '65536',
-                     'qdisc': 'noqueue', 'qlen': '1000', 'state': 'UNKNOWN'},
-            'link': {'brd': '00:00:00:00:00:00', 'ip': '00:00:00:00:00:00', 'link': 'loopback'}
-        }
-    ]
-    assert parsed_result == expected_result
+    assert parsed_result['1']['iface'] == 'lo'
+    assert parsed_result['2']['mtu'] == '1500'
+    assert len(parsed_result['2']['addresses']) == 2
+    assert parsed_result['2']['addresses'][0]['valid_lft'] == '86400sec'
+    assert parsed_result['2']['addresses'][0]['ip'] == '192.168.1.100/24'
+    assert parsed_result['2']['addresses'][1]['ip'] == 'fe80::1a2b:3c4d:5e6f:7g8h/64'
+    assert parsed_result['3']['iface'] == 'wlan0'
+    assert parsed_result['3']['state'] == 'DOWN'
+    assert len(parsed_result['3']['addresses']) == 0
+    assert parsed_result['3']['link']['link'] == 'ether'
+    assert parsed_result['3']['link']['ip'] == 'aa:bb:cc:dd:ee:ff'
 
 
 def test_ip_r():

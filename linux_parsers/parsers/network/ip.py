@@ -1,92 +1,44 @@
 import re
 from typing import Any
 
-from linux_parsers.parsers.exceptions import UnexpectedParseException
 
-
-def parse_ip_a(command_output: str) -> list[Any] | None:
-    """parse `ip a` command output"""
-    interfaces_names = re.findall(r'^\d:\s(.+):', command_output, flags=re.MULTILINE)
-    interfaces = re.split(r'^\d:\s.+:', command_output, flags=re.MULTILINE)
-    interfaces.pop(0)  # get rid of first item (its always empty)
-
-    if len(interfaces_names) != len(interfaces):
-        UnexpectedParseException(f"len(interfaces_names) != len(interfaces)")
-
-    if not interfaces:
-        return
-
-    parsed_interfaces = list()
-
-    for i in range(len(interfaces_names)):
-        interface_lines: list[str] = interfaces[i].splitlines()
-        flags_info = _parse_flags(interface_lines.pop(0).strip())
-        link_layer_info = _parse_link_layer_info(interface_lines.pop(0).strip())
-        inets = list()
-        while interface_lines:
-            inet_line = interface_lines.pop(0).strip()
-            inet_flags_line = interface_lines.pop(0).strip()
-            inets.append(_parse_inet_line(inet_line) | _parse_lease_time(inet_flags_line))
-        parsed_interfaces.append({
-            'info': flags_info,
-            'link': link_layer_info,
-            'inets': inets,
-        })
-        return parsed_interfaces
-
-
-def _parse_inet_line(inet_line: str) -> dict:
-    """
-    parse inet line (e.g: inet 127.0.0.1/8 scope host lo)
-    """
-    inet_pattern = (
-        r"(?P<type>inet(?:6|))"
-        r"\s(?P<ip>\S+)"
-        r"(?:\sbrd\s(?P<brd>\S+))?\s+"
-        r"scope\s(?P<scope>.+)"
+def parse_ip_a(command_output: str):
+    link_pattern = re.compile("link/(?P<link>.+)\s(?P<ip>.+)\sbrd\s(?P<brd>.+)")
+    lease_time_pattern = re.compile("valid_lft\s(?P<valid_lft>\S+)\spreferred_lft\s(?P<preferred_lft>\S+)")
+    ip_pattern = re.compile("(?P<type>inet6?)\s(?P<ip>\S+)(?:\sbrd\s(?P<brd>\S+))?\s+scope\s(?P<scope>.+)")
+    interface_data = re.compile(
+        "(?P<index>\d):\s"
+        "(?P<iface>\S+):\s"
+        "<(?P<flags>[^>]+)>\s"
+        "mtu\s(?P<mtu>\d+)\s"
+        "qdisc\s(?P<qdisc>\S+)\s"
+        "state\s(?P<state>\S+)\s"
+        "group\s(?P<group>\S+)"
+        "(?:\sqlen\s(?P<qlen>\d+))?"
     )
-    regex_result = re.match(inet_pattern, inet_line)
-    return regex_result.groupdict() if regex_result else {}
+    interfaces = {}
+    blocks = re.split(r"\n(?=\d+:)", command_output.strip())  # Split on lines that start with a digit
 
-
-def _parse_lease_time(inet_flags_line: str) -> dict:
-    """
-    parse the valid_lft (Valid Lifetime) and preferred_lft (Preferred Lifetime) fields.
-    """
-    inet_flags_pattern = (
-        r"valid_lft\s(?P<valid_lft>.+)\s"
-        r"preferred_lft\s(?P<preferred_lft>.+)"
-    )
-    regex_result = re.match(inet_flags_pattern, inet_flags_line)
-    return regex_result.groupdict() if regex_result else {}
-
-
-def _parse_flags(flags_info: str) -> dict:
-    """
-    parse flags info
-    (e.g: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000)
-    """
-    pattern = (
-        r"<(?P<flags>.+)>\s+"
-        r"mtu\s(?P<mtu>.+)\s"
-        r"qdisc\s(?P<qdisc>.+)\s"
-        r"state\s(?P<state>.+)\s"
-        r"group\s(?P<group>.+)\s"
-        r"qlen\s(?P<qlen>.+)"
-    )
-    regex_result = re.match(pattern, flags_info)
-    return regex_result.groupdict() if regex_result else {}
-
-
-def _parse_link_layer_info(link_layer_info: str) -> dict:
-    """parse link layer info (e.g: link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00)"""
-    pattern = (
-        r"link\/(?P<link>.+)\s"
-        r"(?P<ip>.+)\s"
-        r"brd\s(?P<brd>.+)"
-    )
-    regex_result = re.match(pattern, link_layer_info)
-    return regex_result.groupdict() if regex_result else {}
+    for block in blocks:
+        lines: list[str] = [i.strip() for i in block.splitlines()]
+        iface_header = lines.pop(0)
+        iface_data = interface_data.search(iface_header).groupdict()
+        iface_index = iface_data['index']
+        interfaces[iface_index] = iface_data
+        interfaces[iface_index]['addresses'] = []
+        if lines and lines[0].startswith("link/"):
+            regex_result = link_pattern.search(lines.pop(0))
+            interfaces[iface_index]["link"] = regex_result.groupdict() if regex_result else {}
+        while lines:
+            line = lines.pop(0)
+            if line.startswith("inet"):
+                regex_result = ip_pattern.search(line)
+                inet = regex_result.groupdict() if regex_result else {}
+                if lines and lines[0].startswith("valid_lft"):
+                    regex_result = lease_time_pattern.search(lines.pop(0))
+                    inet |= regex_result.groupdict() if regex_result else {}
+                interfaces[iface_index]["addresses"].append(inet)
+    return interfaces
 
 
 def parse_ip_r(command_output: str) -> list[dict[str, str | Any]]:
