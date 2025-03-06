@@ -36,4 +36,10 @@ Device     Boot   Start        End    Sectors   Size Id Type
 **Warning: GPT detected on ‘/dev/sdb’ but it is being used with a MBR disklabel.**
     """
     parsed_command = parse_fdisk(command_output)
-    assert parsed_command
+    assert len(parsed_command) == 2
+    assert parsed_command['/dev/sda']['info'] == {'GiB': '500', 'bytes': '536870912000', 'name': '/dev/sda',
+                                                  'sectors': '1048576000'}
+    assert len(parsed_command['/dev/sda']['partition_entries']) == 7
+    assert parsed_command['/dev/sda']['model'] == 'Samsung SSD 860'
+    assert parsed_command['/dev/sda']['label_type'] == 'gpt'
+    assert parsed_command['/dev/sda']['identifier'] == 'C1D2E3F4-G5H6-I7J8-K9L0-M1N2O3P4Q5R6'
