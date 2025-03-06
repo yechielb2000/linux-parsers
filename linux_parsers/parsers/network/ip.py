@@ -1,5 +1,5 @@
 import re
-from typing import Any, List, Dict
+from typing import Any
 
 from linux_parsers.parsers.exceptions import UnexpectedParseException
 
@@ -93,7 +93,7 @@ def parse_ip_r(command_output: str) -> list[dict[str, str | Any]]:
     """
     parse `ip route` command output.
     """
-    route_pattern = re.compile(r"""
+    pattern = re.compile(r"""
         (?P<type>default|blackhole|unreachable|prohibit|broadcast|\d+\.\d+\.\d+\.\d+/\d+)  # Route type or destination
         (?:\s+via\s+(?P<via>\d+\.\d+\.\d+\.\d+))?  # Optional next-hop IP
         (?:\s+dev\s+(?P<dev>\S+))?  # Optional interface (e.g., eth0)
@@ -102,4 +102,17 @@ def parse_ip_r(command_output: str) -> list[dict[str, str | Any]]:
         (?:\s+src\s+(?P<src>\d+\.\d+\.\d+\.\d+))?  # Optional source IP
         (?:\s+metric\s+(?P<metric>\d+))?  # Optional metric
     """, re.VERBOSE)
-    return [match.groupdict() for match in route_pattern.finditer(command_output)]
+    return [match.groupdict() for match in pattern.finditer(command_output)]
+
+
+def parse_ip_n(command_output: str) -> list[dict[str, str | Any]]:
+    """
+    parse `ip n` command output.
+    """
+    pattern = re.compile(r"""
+        (?P<ip>(?:\d{1,3}\.){3}\d{1,3} | [a-fA-F0-9:]+)  # IPv4 or IPv6 address
+        \s+dev\s+(?P<dev>\S+)  # Device/interface name
+        (?:\s+lladdr\s+(?P<lladdr>(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}))?  # Optional MAC address
+        \s+(?P<state>\S+)  # Neighbor state
+    """, re.VERBOSE)
+    return [match.groupdict() for match in pattern.finditer(command_output)]

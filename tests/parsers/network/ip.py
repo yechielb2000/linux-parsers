@@ -1,4 +1,4 @@
-from linux_parsers.parsers.network.ip import parse_ip_a, parse_ip_r
+from linux_parsers.parsers.network.ip import parse_ip_a, parse_ip_r, parse_ip_n
 
 
 def test_ip():
@@ -76,4 +76,23 @@ def test_ip_r():
                                       'type': '192.168.7.0/24', 'via': None},
                       {'dev': None, 'metric': None, 'proto': None, 'scope': None, 'src': None, 'type': 'broadcast',
                        'via': None}]
+    assert parsed_command == expected_value
+
+
+def test_ip_n():
+    command_output = """
+192.168.1.1 dev eth0 lladdr 00:1a:2b:3c:4d:5e REACHABLE
+10.0.0.254 dev wlan0 lladdr aa:bb:cc:dd:ee:ff STALE
+172.16.0.100 dev eth1 FAILED
+192.168.2.1 dev eth2 lladdr 11:22:33:44:55:66 DELAY
+192.168.3.1 dev eth3 INCOMPLETE
+2001:db8::1 dev eth0 lladdr 00:1a:2b:3c:4d:5f STALE
+    """
+    parsed_command = parse_ip_n(command_output)
+    expected_value = [{'dev': 'eth0', 'ip': '192.168.1.1', 'lladdr': '00:1a:2b:3c:4d:5e', 'state': 'REACHABLE'},
+                      {'dev': 'wlan0', 'ip': '10.0.0.254', 'lladdr': 'aa:bb:cc:dd:ee:ff', 'state': 'STALE'},
+                      {'dev': 'eth1', 'ip': '172.16.0.100', 'lladdr': None, 'state': 'FAILED'},
+                      {'dev': 'eth2', 'ip': '192.168.2.1', 'lladdr': '11:22:33:44:55:66', 'state': 'DELAY'},
+                      {'dev': 'eth3', 'ip': '192.168.3.1', 'lladdr': None, 'state': 'INCOMPLETE'},
+                      {'dev': 'eth0', 'ip': '2001:db8::1', 'lladdr': '00:1a:2b:3c:4d:5f', 'state': 'STALE'}]
     assert parsed_command == expected_value
