@@ -21,3 +21,4 @@ To                         Action      From
     assert parsed_command[5]['To'] == '80 (v6)'
     assert parsed_command[6]['Action'] == 'ALLOW'
     assert parsed_command[7]['From'] == 'Anywhere (v6)'
+
