@@ -1,10 +1,6 @@
 import re
 from typing import Any
 
-"""
-.+File:\s+(.+)\n\s+Size:\s+(\d+)\s+Blocks:\s(\d+)\s+IO Block:\s(\d+)\s+(.+)\nDevice:\s+(\S+)\s+Inode:\s+(\d+)\s+Links:\s(\d+)\nAccess:\s+(\S+)\s+Uid:\s+\(\s+(\d+)/\s+(\S+)\)\s+Gid:\s+\(\s+(\d+)/\s+(\S+)\)\nAccess:\s+(.+)\nModify:\s+(.+)\nChange:\s+(.+)\n\sBirth:\s+(.+)
-"""
-
 
 def parse_stat(command_output: str) -> dict[str, str | Any]:
     """Parse the output of `stat` command."""
