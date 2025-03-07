@@ -18,10 +18,20 @@ def parse_ps_ax(command_output: str) -> list[dict[str, str | Any]]:
 
 
 def parse_ps_caweL(command_output: str) -> list[dict[str, str | Any]]:
-    """Parse `ps caweL` command output."""
+    """Parse `ps -caweL` command output."""
     lines = '\n'.join([i.strip() for i in command_output.splitlines() if i.strip()])
     pattern = re.compile(
         "(?P<pid>\d+)\s+(?P<lwp>\d+)\s+(?P<cls>\S+)\s+"
         "(?P<pri>\S+)\s+(?P<tty>\S+)\s+(?P<time>\S+)\s+(?P<cmd>.+)"
     )
     return [i.groupdict() for i in pattern.finditer(lines)]
+
+
+def parse_ps_fadel(command_output: str) -> list[dict[str, str | Any]]:
+    """Parse `ps -fadel` command output."""
+    pattern = re.compile(
+        "(?P<flags>\d+)\s(?P<state>\w+)\s+(?P<uid>\w+)\s+(?P<pid>\d+)\s+(?P<ppid>\d+)\s+"
+        "(?P<cpu>\d+)\s+(?P<priority>\S+)\s+(?P<nice_value>\S+)\s+(?P<mem_addr>\S+)\s+(?P<size>\S+)\s+"
+        "(?P<waiting_channel>\S+)\s+(?P<start_time>\S+)\s+(?P<tty>\S+)\s+(?P<time>\S+)\s+(?P<cmd>.+)"
+    )
+    return [i.groupdict() for i in pattern.finditer(command_output)]
