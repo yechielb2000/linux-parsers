@@ -1,4 +1,4 @@
-from linux_parsers.parsers.network.ss import parse_ss
+from linux_parsers.parsers.network.ss import parse_ss_tulnap, parse_ss_s
 
 
 def test_ss():
@@ -23,10 +23,36 @@ UDP       0         0         192.168.1.10:123       0.0.0.0:*             users
 UDP       0         0         0.0.0.0:123            0.0.0.0:*             users:(("ntpd",pid=3456,fd=8))    
     """
 
-    parsed_result = parse_ss(command_output)
+    parsed_result = parse_ss_tulnap(command_output)
     assert len(parsed_result) == 17
     assert parsed_result[0]['PeerAddress_Port'] == '0.0.0.0:*'
     assert parsed_result[1]['Process'] == 'users:(("nginx",pid=5678,fd=6))'
     assert parsed_result[7]['State'] == 'TIME-WAIT'
     assert  parsed_result[8]['State'] == 'CLOSE_WAIT'
     assert parsed_result[13]['LocalAddress_Port'] == '[::]:80'
+
+
+def test_ss_s():
+    command_output = """
+Total: 3000 (kernel 3500)
+TCP:   1524 (estab 985, closed 330, orphaned 23, synrecv 5, timewait 181/350)
+
+UDP:   702
+UDPLite: 0
+RAW:   18
+FRAG:  4
+
+Transport Total     IP        IPv6
+RAW       18        11        7
+UDP       702       689       13
+TCP       1524      1400      124
+INET      2244      1800      444
+FRAG      4         3         1
+    """
+    parsed_result = parse_ss_s(command_output)
+    assert parsed_result['total'] == '3000'
+    assert parsed_result['kernel'] == '3500'
+    assert parsed_result['TCP']['closed'] == '330'
+    assert parsed_result['UDP'] == '702'
+    assert parsed_result['RAW'] == '18'
+    assert parsed_result['transports'][0]['total'] == '18'
