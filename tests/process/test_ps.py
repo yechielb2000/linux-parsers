@@ -1,4 +1,4 @@
-from linux_parsers.parsers.process.ps import parse_ps_aux, parse_ps_ax, parse_ps_caweL
+from linux_parsers.parsers.process.ps import parse_ps_aux, parse_ps_ax, parse_ps_caweL, parse_ps_fadel
 
 
 def test_ps_aux():
@@ -74,3 +74,27 @@ def test_ps_caweL():
     assert parsed_command[2]['tty'] == 'hvc0'
     assert parsed_command[9]['time'] == '00:00:00'
     assert parsed_command[9]['tty'] == 'pts/0'
+
+
+def test_ps_fadel():
+    command_output = """
+F S UID        PID  PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
+4 S root         1     0  0  80   0 -   654 -      14:00 hvc0     00:00:00 /init
+0 S root         5     1  0  80   0 -   654 -      14:00 hvc0     00:00:00 plan9 --control-socket 5 --log-level 4 --server-fd 6 --pipe-fd 8 --log-truncate
+5 S root         8     1  0  80   0 -   656 -      14:00 ?        00:00:00 /init
+5 S root         9     8  0  80   0 -   656 -      14:00 ?        00:00:00 /init
+4 S a           10     9  0  80   0 -  8175 futex_ 14:00 pts/0    00:00:15 /tmp/tmp.ozjZDppcnK/ijent grpc-stdio-server --log-level info --self-delete-on-exit
+5 S root      5950     1  0  80   0 -   656 -      14:45 ?        00:00:00 /init
+5 S root      5951  5950  0  80   0 -   656 -      14:45 ?        00:00:00 /init
+4 S a         5952  5951  0  80   0 -  1886 do_wai 14:45 pts/1    00:00:00 -bash
+0 R a        10981  5952  0  80   0 -  2053 -      15:23 pts/1    00:00:00 ps -fadel    
+    """
+    parsed_command = parse_ps_fadel(command_output)
+    assert len(parsed_command) == 9
+    assert parsed_command[0]['pid'] == '1'
+    assert parsed_command[1]['mem_addr'] == '-'
+    assert parsed_command[1]['cpu'] == '0'
+    assert parsed_command[1]['start_time'] == '14:00'
+    assert parsed_command[1]['priority'] == '80'
+    assert parsed_command[1]['nice_value'] == '0'
+    assert parsed_command[1]['waiting_channel'] == '-'
