@@ -24,3 +24,10 @@ MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   7399.1 avail Mem
 """
     parsed_command = parse_top(command_output)
     assert parsed_command
+    assert len(parsed_command['process_list']) == 9
+    assert parsed_command['process_list'][0]['pid'] == '10'
+    assert parsed_command['process_list'][0]['user'] == 'a'
+    assert parsed_command['process_list'][0]['pr'] == '20'
+    assert parsed_command['system']['uptime'] == '1:42'
+    assert parsed_command['tasks']['sleeping'] == '8'
+    assert parsed_command['swap']['avail_mem'] == '7399.1'
