@@ -1,8 +1,8 @@
 import re
-from typing import Any, Dict
+from typing import Any
 
 
-def parse_ip_a(command_output: str) -> dict[str | Any, dict[str, str | Any]]:
+def parse_ip_a(command_output: str) -> dict[str, dict[str, any]]:
     link_pattern = re.compile("link/(?P<link>.+)\s(?P<ip>.+)\sbrd\s(?P<brd>.+)")
     lease_time_pattern = re.compile("valid_lft\s(?P<valid_lft>\S+)\spreferred_lft\s(?P<preferred_lft>\S+)")
     ip_pattern = re.compile("(?P<type>inet6?)\s(?P<ip>\S+)(?:\sbrd\s(?P<brd>\S+))?\s+scope\s(?P<scope>.+)")

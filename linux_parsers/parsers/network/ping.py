@@ -1,10 +1,9 @@
 import re
-from typing import Any
 
 from linux_parsers.parsers.exceptions import UnexpectedParseException
 
 
-def parse_ping(command_output: str) -> dict[str, str | Any]:
+def parse_ping(command_output: str) -> dict[str, any]:
     rtt_pattern = re.compile(".+=\s(?P<min>\S+)/(?P<avg>\S+)/(?P<max>\S+)/(?P<mdev>.+)")
     header_pattern = re.compile(
         "PING\s(?P<target>\S+)\s\((?P<resolvedIp>\S+)\)\s(?P<payloadSize>\d+)\((?P<totalPacketSize>\d+)\).+"

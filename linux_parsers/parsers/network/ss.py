@@ -1,8 +1,7 @@
 import re
-from typing import Any
 
 
-def parse_ss_tulnap(command_output: str) -> list[dict[str, str | Any]]:
+def parse_ss_tulnap(command_output: str) -> list[dict[str, any]]:
     """Parse `ss -tulnap` command output."""
     record_pattern = re.compile(
         "(?P<State>[-_A-Z]+)\s+"

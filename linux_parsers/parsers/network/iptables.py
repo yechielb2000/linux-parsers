@@ -1,8 +1,7 @@
 import re
-from typing import Dict, List, Any
 
 
-def parse_iptables(command_output: str) -> dict[str, list[Any]]:
+def parse_iptables(command_output: str) -> dict[str, list[any]]:
     """Parse `iptables -L -n -v` command output."""
     record_pattern = re.compile(
         "^(?P<pkts>\d+)\s+"
@@ -14,7 +13,7 @@ def parse_iptables(command_output: str) -> dict[str, list[Any]]:
         "(?P<out>\S+)\s+"
         "(?P<source>\S+/\d+)\s+"
         "(?P<destination>\S+/\d+)\s+"
-        "(?:(?P<rule>.+))?"
+        "(?P<rule>.+)?"
     )
     parsed_command = {}
 

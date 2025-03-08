@@ -1,10 +1,7 @@
 import re
-from typing import Any
-
-"Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
 
 
-def parse_netstat(command_output: str) -> list[dict[str, str | Any]]:
+def parse_netstat(command_output: str) -> list[dict[str, a]]:
     """Parse `netstat -tulpan` command output."""
     record_pattern = re.compile(
         "(?P<Proto>\w+)\s+"

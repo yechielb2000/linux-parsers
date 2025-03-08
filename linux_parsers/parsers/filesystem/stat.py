@@ -1,8 +1,7 @@
 import re
-from typing import Any
 
 
-def parse_stat(command_output: str) -> dict[str, str | Any]:
+def parse_stat(command_output: str) -> dict[str, any]:
     """Parse the output of `stat` command."""
     storage_pattern = re.compile(
         r'Size:\s(?P<size>\d+)\s+'
