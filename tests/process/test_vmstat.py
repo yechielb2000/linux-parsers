@@ -9,7 +9,7 @@ procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu----
 """
     parsed_command = parse_vmstat(command_output)
     assert len(parsed_command) == 1
-    assert parsed_command[0]['b'] == '0'
-    assert parsed_command[0]['free'] == '7641168'
-    assert parsed_command[0]['cs'] == '0'
-    assert parsed_command[0]['cache'] == '104604'
+    assert parsed_command[0]['procs'] == {'b': '0', 'r': '1'}
+    assert parsed_command[0]['io'] == {'bi': '23', 'bo': '4'}
+    assert parsed_command[0]['cpu'] == {'gu': '0', 'id': '100', 'st': '0', 'sy': '0', 'us': '0', 'wa': '0'}
+    assert parsed_command[0]['system'] == {'cs': '0', 'in': '48'}
