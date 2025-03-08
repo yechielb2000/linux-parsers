@@ -45,3 +45,38 @@ def parse_vmstat(command_output: str) -> list[dict[str, dict]]:
             },
         })
     return parsed_command
+
+
+def parse_vmstat_adt(command_output: str) -> dict[str, any]:
+    """Parse `vmstat -adt` command output."""
+    pattern = re.compile(
+        r"(?P<disk>\S+)\s+"
+        r"(?P<r_total>\d+)\s+(?P<r_merged>\d+)\s+(?P<r_sectors>\d+)\s+(?P<r_ms>\d+)\s+"
+        r"(?P<w_total>\d+)\s+(?P<w_merged>\d+)\s+(?P<w_sectors>\d+)\s+(?P<w_ms>\d+)\s+"
+        r"(?P<cur>\d+)\s+(?P<sec>\d+)\s+"
+        r"(?P<ist>.+)"
+    )
+    parsed_command = {}
+
+    for record in pattern.finditer(command_output):
+        record = record.groupdict()
+        parsed_command[record['disk']] = {
+            'reads': {
+                'total': record['r_total'],
+                'merged': record['r_merged'],
+                'sectors': record['r_sectors'],
+                'ms': record['w_ms'],
+            },
+            'writes': {
+                'total': record['w_total'],
+                'merged': record['w_merged'],
+                'sectors': record['w_sectors'],
+                'ms': record['w_ms'],
+            },
+            'io': {
+                'cur': record['cur'],
+                'sec': record['sec'],
+            },
+            'timestamp': record['ist'],
+        }
+    return parsed_command
