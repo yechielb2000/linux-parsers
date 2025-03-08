@@ -1,8 +1,7 @@
 import re
-from typing import Any
 
 
-def parse_fdisk(command_output: str) -> dict[str | Any, dict[str, list[Any] | dict[str | Any, str | Any]] | str]:
+def parse_fdisk(command_output: str) -> dict[str, any]:
     """Parse `fdisk -l` command output."""
     partition_entry_pattern = re.compile(
         "(?P<partition>/dev/\S+)\s+"

@@ -1,8 +1,7 @@
 import re
-from typing import Any
 
 
-def parse_mount(command_output: str) -> list[dict[str, str | Any]]:
+def parse_mount(command_output: str) -> list[dict[str, any]]:
     """Parse command output of `cat /proc/mounts` or `mount`."""
     pattern = re.compile(
         r"(?P<device>\S+)\s+"

@@ -1,8 +1,7 @@
 import re
-from typing import Any
 
 
-def parse_df(command_output: str) -> list[dict[str, str | Any]]:
+def parse_df(command_output: str) -> list[dict[str, any]]:
     """Parse 'df' command output."""
     pattern = re.compile(
         r"(?P<Filesystem>\S+)\s+"
