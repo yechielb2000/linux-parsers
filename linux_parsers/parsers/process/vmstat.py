@@ -47,9 +47,6 @@ def parse_vmstat(command_output: str) -> list[dict[str, dict]]:
     return parsed_command
 
 
-" total merged sectors      ms  total merged sectors      ms    cur    sec                 IST"
-
-
 def parse_vmstat_adt(command_output: str) -> dict[str, any]:
     """Parse `vmstat -adt` command output."""
     pattern = re.compile(
@@ -83,4 +80,3 @@ def parse_vmstat_adt(command_output: str) -> dict[str, any]:
             'timestamp': record['ist'],
         }
     return parsed_command
-
