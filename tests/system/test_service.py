@@ -1,4 +1,4 @@
-from linux_parsers.parsers.process.service import parse_service
+from linux_parsers.parsers.system.service import parse_service
 
 
 def test_service():

@@ -1,4 +1,4 @@
-from linux_parsers.parsers.system.useradd import parse_useradd_D
+from linux_parsers.parsers.users.useradd import parse_useradd_D
 
 
 def test_useradd_D():
