@@ -1,4 +1,4 @@
-from linux_parsers.parsers.process.mpstat import parse_mpstat
+from linux_parsers.parsers.system.mpstat import parse_mpstat
 
 
 def test_mpstat():

@@ -1,4 +1,4 @@
-from linux_parsers.parsers.process.vmstat import parse_vmstat, parse_vmstat_adt
+from linux_parsers.parsers.system.vmstat import parse_vmstat, parse_vmstat_adt
 
 
 def test_vmstat():

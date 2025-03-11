@@ -1,4 +1,4 @@
-from linux_parsers.parsers.process.iostat import parse_iostat
+from linux_parsers.parsers.system.iostat import parse_iostat
 
 
 def test_iostat():
