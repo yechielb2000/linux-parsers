@@ -4,6 +4,7 @@ version = "0.1.0"
 license = { file = "LICENSE" }
 Repository = "https://github.com/yechielb2000/linux-parsers.git"
 Issues = "https://github.com/yechielb2000/linux-parsers/issues"
+Changelog = "https://github.com/yechielb2000/linux-parsers/blob/main/CHANGELOG.md"
 description = "Simplest library for parsing linux commands and files"
 keywords = ['linux', 'parser', 'command', 'file']
 readme = { file = "README.txt", content-type = "text/markdown" }
