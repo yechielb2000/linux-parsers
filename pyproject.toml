@@ -5,3 +5,6 @@ description = "Simplest library for parsing linux commands and files"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
+authors = [
+  {name = "Yechiel Babani", email = "yechielb2000@gmail.com"},
+]
