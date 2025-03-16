@@ -1,10 +1,14 @@
 [project]
 name = "linux-parsers"
 version = "0.1.0"
+license = { file = "LICENSE" }
+Repository = "https://github.com/yechielb2000/linux-parsers.git"
+Issues = "https://github.com/yechielb2000/linux-parsers/issues"
 description = "Simplest library for parsing linux commands and files"
-readme = "README.md"
+keywords = ['linux', 'parser', 'command', 'file']
+readme = { file = "README.txt", content-type = "text/markdown" }
 requires-python = ">=3.12"
 dependencies = []
 authors = [
-  {name = "Yechiel Babani", email = "yechielb2000@gmail.com"},
+    { name = "Yechiel Babani", email = "yechielb2000@gmail.com" },
 ]
