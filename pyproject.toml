@@ -8,7 +8,7 @@ Changelog = "https://github.com/yechielb2000/linux-parsers/blob/main/CHANGELOG.m
 description = "Simplest library for parsing linux commands and files"
 keywords = ['linux', 'parser', 'command', 'file']
 readme = { file = "README.txt", content-type = "text/markdown" }
-requires-python = ">=3.12"
+requires-python = ">=3.8"
 dependencies = []
 authors = [
     { name = "Yechiel Babani", email = "yechielb2000@gmail.com" },
