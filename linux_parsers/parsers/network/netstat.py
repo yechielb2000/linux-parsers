@@ -1,7 +1,7 @@
 import re
 
 
-def parse_netstat(command_output: str) -> list[dict[str, a]]:
+def parse_netstat(command_output: str) -> list[dict[str, any]]:
     """Parse `netstat -tulpan` command output."""
     record_pattern = re.compile(
         "(?P<Proto>\w+)\s+"
