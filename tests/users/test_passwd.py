@@ -1,4 +1,4 @@
-from linux_parsers.parsers.users.passwd import parse_etc_passwd_file
+from linux_parsers.parsers.users.etc_passwd import parse_etc_passwd_file
 
 
 def test_passwd():

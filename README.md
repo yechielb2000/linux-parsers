@@ -63,7 +63,6 @@ system/
     ├── uname.py
     ├── vmstat.py
 users/
-    ├── __init__.py
     ├── chage.py
     ├── passwd.py
     ├── shadow.py

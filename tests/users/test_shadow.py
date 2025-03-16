@@ -1,4 +1,4 @@
-from linux_parsers.parsers.users.shadow import parse_etc_shadow_file
+from linux_parsers.parsers.users.etc_shadow import parse_etc_shadow_file
 
 
 def test_shadow():
