@@ -1,74 +1,73 @@
-# linux-parsers
+# Linux Parsers
+
+## 🤵‍♂️ 🐧 🤵‍♀️ 🐧 🤵 🐧
+    ^________________________________________________________
+    |                                                        |
+    | Simplest library for parsing linux commands and files  |
+    \________________________________________________________/
+
+## How to use
+
+Let's say you want to parse `ps aux` command to get the processes in a better form.
+
+```python
+import subprocess
+from linux_parsers.parsers.process.ps import parse_ps_aux
+
+# Run the ps aux command
+completed_process_result = subprocess.run(['ps', 'aux'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+# Get the command result
+ps_aux_command_output = completed_process_result.stdout
+# parse the command
+parsed_command_output = parse_ps_aux(ps_aux_command_output)
+# Print the parsed command result
+print(parsed_command_output)
+```
 
 
-**Networking Products:**
-- ARP Cache (arp, ip neigh)
-- Ping (ping, fping)
-- Network Statistics (netstat, ss)
-- Packet Capture (tcpdump, Wireshark/tshark)
-- Network Configuration (ifconfig, ip, nmcli)
-- DNS Lookup (dig, nslookup, host)
-- Network Traffic Analysis (iftop, bmon)
-- Firewall Management (iptables, nftables, ufw)
-- Routing Table Management (route, ip route)
-- VPN and Tunneling (OpenVPN, WireGuard)
-- Proxy Management (squid, tinyproxy)
-
-**Filesystem Products:**
-- Directory Listing (ls, tree)
-- File Management (cp, mv, rm, touch)
-- Disk Usage and Partitioning (df, du, fdisk, lsblk)
-- File Search (find, locate, grep)
-- File Permissions Management (chmod, chown, umask)
-- File Compression (tar, zip, gzip, bzip2)
-- Filesystem Mounting (mount, umount, fstab)
-- File Integrity Checking (md5sum, sha256sum)
-- File Synchronization (rsync, scp, sftp)
-- File Metadata (stat, file)
-
-**Process Management Products:**
-- Process Listing (ps, top, htop)
-- Background and Foreground Management (bg, fg, jobs)
-- Process Control (kill, pkill, nice, renice)
-- System Resource Monitoring (vmstat, iostat, mpstat)
-- Service Management (systemctl, service, init.d)
-- Logging and Debugging (dmesg, journalctl)
-
-**Security Products:**
-- User Management (useradd, usermod, passwd)
-- Group Management (groupadd, gpasswd, groups)
-- File Encryption (gpg, openssl enc)
-- Secure Remote Access (ssh, scp, rsync over SSH)
-- Firewall and Network Security (iptables, nftables, fail2ban)
-- Rootkit Detection (chkrootkit, rkhunter)
-- SELinux and AppArmor Policies (getenforce, aa-status)
-
-**Virtualization & Containerization Products:**
-- Virtual Machines (KVM, QEMU, VirtualBox)
-- Container Management (Docker, Podman, LXC/LXD)
-- Snapshot and Backup (qemu-img, btrfs snapshot)
-- Cloud Integration (OpenStack, Cloud-init)
-
-**Hardware and System Info Products:**
-- CPU and Memory Info (lscpu, free, top)
-- Hardware Information (lshw, hwinfo, dmidecode)
-- PCI/USB Devices (lspci, lsusb)
-- Battery and Power Management (acpi, upower)
-- Kernel Modules and Drivers (lsmod, modprobe, dmesg)
-
-**Logging & Monitoring Products:**
-- System Logs (journalctl, syslog, rsyslog)
-- System Monitoring (monit, nagios, zabbix)
-- Performance Profiling (perf, strace, lsof)
-- Application Debugging (gdb, valgrind)
-
-**Task Automation Products:**
-- Job Scheduling (cron, at, systemd timers)
-- Automation Scripting (bash scripts, Ansible, Puppet)
-- Command Chaining (xargs, awk, sed, cut)
-
-**User & Session Management Products:**
-- User Sessions (who, w, last)
-- Login Authentication (pam, passwd, sudo)
-- Remote User Sessions (screen, tmux)
-
+## Hierarchy
+```markdown
+filesystem/
+    ├── df.py
+    ├── dpkg.py
+    ├── du.py
+    ├── fdisk.py
+    ├── ls.py
+    ├── mount.py
+    ├── stat.py
+monitors/
+    ├── __init__.py
+network/
+    ├── arp.py
+    ├── ip.py
+    ├── iptables.py
+    ├── netstat.py
+    ├── ping.py
+    ├── ss.py
+    ├── ufw.py
+process/
+    ├── cgroups.py
+    ├── jobs.py
+    ├── ps.py
+    ├── top.py
+session/
+    ├── last.py
+    ├── w.py
+    ├── who.py
+system/
+    ├── free.py
+    ├── hwinfo.py
+    ├── iostat.py
+    ├── mpstat.py
+    ├── service.py
+    ├── uname.py
+    ├── vmstat.py
+users/
+    ├── __init__.py
+    ├── chage.py
+    ├── passwd.py
+    ├── shadow.py
+    ├── useradd.py
+virtualization/
+    ├── __init__.py
+```
