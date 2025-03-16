@@ -5,7 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+linux_parsers.egg-info
 # Distribution / packaging
 .Python
 build/

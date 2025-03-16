@@ -1,7 +1,18 @@
 [project]
 name = "linux-parsers"
 version = "0.1.0"
+license = { file = "LICENSE" }
+Repository = "https://github.com/yechielb2000/linux-parsers.git"
+Issues = "https://github.com/yechielb2000/linux-parsers/issues"
+Changelog = "https://github.com/yechielb2000/linux-parsers/blob/main/CHANGELOG.md"
 description = "Simplest library for parsing linux commands and files"
-readme = "README.md"
-requires-python = ">=3.12"
+keywords = ['linux', 'parser', 'command', 'file']
+readme = { file = "README.txt", content-type = "text/markdown" }
+requires-python = ">=3.8"
 dependencies = []
+classifiers = [
+    "Programming Language :: Python"
+]
+authors = [
+    { name = "Yechiel Babani", email = "yechielb2000@gmail.com" },
+]
