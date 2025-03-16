@@ -10,6 +10,9 @@ keywords = ['linux', 'parser', 'command', 'file']
 readme = { file = "README.txt", content-type = "text/markdown" }
 requires-python = ">=3.8"
 dependencies = []
+classifiers = [
+    "Programming Language :: Python"
+]
 authors = [
     { name = "Yechiel Babani", email = "yechielb2000@gmail.com" },
 ]
