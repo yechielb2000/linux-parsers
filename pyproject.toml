@@ -14,7 +14,6 @@ authors = [
 ]
 
 license =  { text = "LICENSE" }
-dynamic = ["license"]
 
 [project.urls]
 Repository = "https://github.com/yechielb2000/linux-parsers.git"
