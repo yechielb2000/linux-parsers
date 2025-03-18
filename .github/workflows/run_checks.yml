@@ -21,19 +21,15 @@ jobs:
         with:
           python-version: ${{ matrix.python_versions }}
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           uv sync --all-extras --dev
+
+      - name: Run Pytest
+        run: uv run pytest
+
   ruff:
-    runs-on: ${{ needs.setup.matrix.os }}
-    needs: [ setup ]
+    runs-on: ubuntu-latest
     steps:
       - name: Run Ruff Check
         run: uv run ruff check
-
-  pytest:
-    runs-on: ${{ needs.setup.matrix.os }}
-    needs: [ setup ]
-    steps:
-      - name: Run Pytest
-        run: uv run pytest
