@@ -5,11 +5,10 @@ on:
       - main
 jobs:
   setup:
-    runs-on: ${{ matrix.os }}
+    runs-on:  ubuntu-22.04
     strategy:
       matrix:
         python_versions: [ "3.8", "3.9", "3.10", "3.11", "3.12", "3.13" ]
-        os: [ubuntu-20.04, ubuntu-22.04, debian-11, fedora-36, centos-8]
     steps:
       - uses: actions/checkout@v4
 
