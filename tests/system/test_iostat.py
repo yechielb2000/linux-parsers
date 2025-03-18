@@ -16,11 +16,17 @@ sdc               0.39         7.05         3.23         2.06      21189       9
     
 """
     parsed_command = parse_iostat(command_output)
-    assert parsed_command['os'] == 'Linux 5.15.167.4-microsoft-standard-WSL2'
-    assert parsed_command['execute_date'] == '03/11/2025'
-    assert parsed_command['architecture'] == '_x86_64_'
-    assert len(parsed_command['statistics']) == 3
-    assert parsed_command['statistics'][0]['kB_read_s'] == '24.32'
-    assert parsed_command['statistics'][0]['Device'] == 'sda'
-    assert parsed_command['avg_cpu'] == {'idle': '99.79', 'iowait': '0.01',
-                                         'nice': '0.00', 'steal': '0.00', 'system': '0.15', 'user': '0.05'}
+    assert parsed_command["os"] == "Linux 5.15.167.4-microsoft-standard-WSL2"
+    assert parsed_command["execute_date"] == "03/11/2025"
+    assert parsed_command["architecture"] == "_x86_64_"
+    assert len(parsed_command["statistics"]) == 3
+    assert parsed_command["statistics"][0]["kB_read_s"] == "24.32"
+    assert parsed_command["statistics"][0]["Device"] == "sda"
+    assert parsed_command["avg_cpu"] == {
+        "idle": "99.79",
+        "iowait": "0.01",
+        "nice": "0.00",
+        "steal": "0.00",
+        "system": "0.15",
+        "user": "0.05",
+    }

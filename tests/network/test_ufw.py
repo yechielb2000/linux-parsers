@@ -18,7 +18,6 @@ To                         Action      From
 """
     parsed_command = parse_ufw_status(command_output)
     assert len(parsed_command) == 8
-    assert parsed_command[5]['To'] == '80 (v6)'
-    assert parsed_command[6]['Action'] == 'ALLOW'
-    assert parsed_command[7]['From'] == 'Anywhere (v6)'
-
+    assert parsed_command[5]["To"] == "80 (v6)"
+    assert parsed_command[6]["Action"] == "ALLOW"
+    assert parsed_command[7]["From"] == "Anywhere (v6)"

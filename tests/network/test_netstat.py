@@ -17,7 +17,7 @@ udp6       0      0 ::1:323                 :::*                                
 
     parsed_result = parse_netstat(command_output)
     assert len(parsed_result) == 9
-    assert parsed_result[0]['Proto'] == "tcp"
-    assert parsed_result[0]['State'] == 'LISTEN'
-    assert parsed_result[5]['LocalAddress'] == '10.255.255.254:53'
-    assert parsed_result[5]['ForeignAddress'] == '0.0.0.0:*'
+    assert parsed_result[0]["Proto"] == "tcp"
+    assert parsed_result[0]["State"] == "LISTEN"
+    assert parsed_result[5]["LocalAddress"] == "10.255.255.254:53"
+    assert parsed_result[5]["ForeignAddress"] == "0.0.0.0:*"

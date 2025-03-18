@@ -8,6 +8,8 @@ def test_service():
 [ ? ]  docker
     """
     parsed_output = parse_service(command_output)
-    assert parsed_output == [{'service': 'apache2', 'status': 'running'},
-                             {'service': 'bluetooth', 'status': 'stopped'},
-                             {'service': 'docker', 'status': 'unknown'}]
+    assert parsed_output == [
+        {"service": "apache2", "status": "running"},
+        {"service": "bluetooth", "status": "stopped"},
+        {"service": "docker", "status": "unknown"},
+    ]

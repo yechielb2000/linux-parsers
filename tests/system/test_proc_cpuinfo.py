@@ -87,8 +87,8 @@ address sizes   : 39 bits physical, 48 bits virtual
 power management:"""
     parsed_output = parse_proc_cpuinfo_file(command_output)
     assert len(parsed_output) == 3
-    assert parsed_output[0]['address sizes'] == '39 bits physical, 48 bits virtual'
-    assert parsed_output[0]['wp'] == 'yes'
-    assert parsed_output[0]['cpu family'] == '6'
-    assert parsed_output[0]['model'] == '142'
-    assert parsed_output[0]['power management'] == ''
+    assert parsed_output[0]["address sizes"] == "39 bits physical, 48 bits virtual"
+    assert parsed_output[0]["wp"] == "yes"
+    assert parsed_output[0]["cpu family"] == "6"
+    assert parsed_output[0]["model"] == "142"
+    assert parsed_output[0]["power management"] == ""

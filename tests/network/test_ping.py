@@ -16,9 +16,14 @@ rtt min/avg/max/mdev = 14.9/15.15/15.4/0.2 ms
     """
     parsed_result = parse_ping(command_output)
 
-    assert parsed_result['target'] == '8.8.8.8'
-    assert parsed_result['payloadSize'] == '56'
-    assert parsed_result['totalPacketSize'] == '84'
-    assert len(parsed_result['records']) == 4
-    assert parsed_result['records'][0] == {'replaySize': '64', 'from': '8.8.8.8', 'icmpSeq': '1', 'ttl': '118'}
-    assert parsed_result['rtt']['avg'] == '15.15'
+    assert parsed_result["target"] == "8.8.8.8"
+    assert parsed_result["payloadSize"] == "56"
+    assert parsed_result["totalPacketSize"] == "84"
+    assert len(parsed_result["records"]) == 4
+    assert parsed_result["records"][0] == {
+        "replaySize": "64",
+        "from": "8.8.8.8",
+        "icmpSeq": "1",
+        "ttl": "118",
+    }
+    assert parsed_result["rtt"]["avg"] == "15.15"

@@ -1,11 +1,15 @@
 import re
-from typing import Any
+from typing import Any, Dict, List
 
 
-def parse_ip_a(command_output: str) -> dict[str, dict[str, any]]:
+def parse_ip_a(command_output: str) -> Dict[str, Dict[str, Any]]:
     link_pattern = re.compile("link/(?P<link>.+)\s(?P<ip>.+)\sbrd\s(?P<brd>.+)")
-    lease_time_pattern = re.compile("valid_lft\s(?P<valid_lft>\S+)\spreferred_lft\s(?P<preferred_lft>\S+)")
-    ip_pattern = re.compile("(?P<type>inet6?)\s(?P<ip>\S+)(?:\sbrd\s(?P<brd>\S+))?\s+scope\s(?P<scope>.+)")
+    lease_time_pattern = re.compile(
+        "valid_lft\s(?P<valid_lft>\S+)\spreferred_lft\s(?P<preferred_lft>\S+)"
+    )
+    ip_pattern = re.compile(
+        "(?P<type>inet6?)\s(?P<ip>\S+)(?:\sbrd\s(?P<brd>\S+))?\s+scope\s(?P<scope>.+)"
+    )
     interface_data = re.compile(
         "(?P<index>\d):\s"
         "(?P<iface>\S+):\s"
@@ -17,18 +21,22 @@ def parse_ip_a(command_output: str) -> dict[str, dict[str, any]]:
         "(?:\sqlen\s(?P<qlen>\d+))?"
     )
     interfaces = {}
-    blocks = re.split(r"\n(?=\d+:)", command_output.strip())  # Split on lines that start with a digit
+    blocks = re.split(
+        r"\n(?=\d+:)", command_output.strip()
+    )  # Split on lines that start with a digit
 
     for block in blocks:
-        lines: list[str] = [i.strip() for i in block.splitlines()]
+        lines: List[str] = [i.strip() for i in block.splitlines()]
         iface_header = lines.pop(0)
         iface_data = interface_data.search(iface_header).groupdict()
-        iface_index = iface_data['index']
+        iface_index = iface_data["index"]
         interfaces[iface_index] = iface_data
-        interfaces[iface_index]['addresses'] = []
+        interfaces[iface_index]["addresses"] = []
         if lines and lines[0].startswith("link/"):
             regex_result = link_pattern.search(lines.pop(0))
-            interfaces[iface_index]["link"] = regex_result.groupdict() if regex_result else {}
+            interfaces[iface_index]["link"] = (
+                regex_result.groupdict() if regex_result else {}
+            )
         while lines:
             line = lines.pop(0)
             if line.startswith("inet"):
@@ -41,11 +49,12 @@ def parse_ip_a(command_output: str) -> dict[str, dict[str, any]]:
     return interfaces
 
 
-def parse_ip_r(command_output: str) -> list[dict[str, str | Any]]:
+def parse_ip_r(command_output: str) -> List[Dict[str, Any]]:
     """
     parse `ip route` command output.
     """
-    pattern = re.compile(r"""
+    pattern = re.compile(
+        r"""
         (?P<type>default|blackhole|unreachable|prohibit|broadcast|\d+\.\d+\.\d+\.\d+/\d+)  # Route type or destination
         (?:\s+via\s+(?P<via>\d+\.\d+\.\d+\.\d+))?  # Optional next-hop IP
         (?:\s+dev\s+(?P<dev>\S+))?  # Optional interface (e.g., eth0)
@@ -53,18 +62,23 @@ def parse_ip_r(command_output: str) -> list[dict[str, str | Any]]:
         (?:\s+scope\s+(?P<scope>\S+))?  # Optional scope (e.g., link)
         (?:\s+src\s+(?P<src>\d+\.\d+\.\d+\.\d+))?  # Optional source IP
         (?:\s+metric\s+(?P<metric>\d+))?  # Optional metric
-    """, re.VERBOSE)
+    """,
+        re.VERBOSE,
+    )
     return [match.groupdict() for match in pattern.finditer(command_output)]
 
 
-def parse_ip_n(command_output: str) -> list[dict[str, str | Any]]:
+def parse_ip_n(command_output: str) -> List[Dict[str, Any]]:
     """
     parse `ip n` command output.
     """
-    pattern = re.compile(r"""
+    pattern = re.compile(
+        r"""
         (?P<ip>(?:\d{1,3}\.){3}\d{1,3} | [a-fA-F0-9:]+)  # IPv4 or IPv6 address
         \s+dev\s+(?P<dev>\S+)  # Device/interface name
         (?:\s+lladdr\s+(?P<lladdr>(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}))?  # Optional MAC address
         \s+(?P<state>\S+)  # Neighbor state
-    """, re.VERBOSE)
+    """,
+        flags=re.VERBOSE,
+    )
     return [match.groupdict() for match in pattern.finditer(command_output)]

@@ -42,9 +42,26 @@ options timeout:10 attempts:5
 options single-request    
 """
     parsed_output = parse_etc_resolve_conf_file(command_output)
-    assert parsed_output['nameservers'] == ['8.8.8.8', '8.8.4.4', '192.168.1.1', '192.168.1.2']
-    assert parsed_output['search_domains'] == ['company.com', 'dev.company.com', 'staging.company.com',
-                                               'vpn.example.com', 'intranet.local']
-    assert parsed_output['options'] == ['timeout:5', 'attempts:2', 'ndots:3', 'edns0', 'rotate', 'timeout:10',
-                                        'attempts:5', 'single-request']
-
+    assert parsed_output["nameservers"] == [
+        "8.8.8.8",
+        "8.8.4.4",
+        "192.168.1.1",
+        "192.168.1.2",
+    ]
+    assert parsed_output["search_domains"] == [
+        "company.com",
+        "dev.company.com",
+        "staging.company.com",
+        "vpn.example.com",
+        "intranet.local",
+    ]
+    assert parsed_output["options"] == [
+        "timeout:5",
+        "attempts:2",
+        "ndots:3",
+        "edns0",
+        "rotate",
+        "timeout:10",
+        "attempts:5",
+        "single-request",
+    ]

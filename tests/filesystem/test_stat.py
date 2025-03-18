@@ -12,7 +12,7 @@ Change: 2025-03-06 10:25:00.987654321 +0000
  Birth: -
     """
     parsed_output = parse_stat(command_output)
-    assert parsed_output['birth'] == '-'
-    assert parsed_output['type'] == 'regular file'
-    assert parsed_output['io_block'] == '4096'
-    assert parsed_output['access'] == '2025-03-07 12:34:56.789012345 +0000'
+    assert parsed_output["birth"] == "-"
+    assert parsed_output["type"] == "regular file"
+    assert parsed_output["io_block"] == "4096"
+    assert parsed_output["access"] == "2025-03-07 12:34:56.789012345 +0000"

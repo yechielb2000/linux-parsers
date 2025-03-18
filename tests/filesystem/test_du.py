@@ -1,4 +1,3 @@
-from linux_parsers.parsers.filesystem.df import parse_df
 from linux_parsers.parsers.filesystem.du import parse_du
 
 
@@ -25,9 +24,9 @@ du: cannot read directory '/var/log/private': Permission denied
 """
     parsed_command = parse_du(command_output)
     assert len(parsed_command) == 17
-    assert parsed_command[0]['path'] == '/var/log/btmp'
-    assert parsed_command[1]['path'] == '/var/log/lastlog'
-    assert parsed_command[2]['path'] == '/var/log/runit/ssh'
-    assert parsed_command[0]['sizeBytes'] == '0'
-    assert parsed_command[1]['sizeBytes'] == '0'
-    assert parsed_command[6]['sizeBytes'] == '77788'
+    assert parsed_command[0]["path"] == "/var/log/btmp"
+    assert parsed_command[1]["path"] == "/var/log/lastlog"
+    assert parsed_command[2]["path"] == "/var/log/runit/ssh"
+    assert parsed_command[0]["sizeBytes"] == "0"
+    assert parsed_command[1]["sizeBytes"] == "0"
+    assert parsed_command[6]["sizeBytes"] == "77788"

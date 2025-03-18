@@ -10,14 +10,14 @@ user3:$6$thirdSalt$7bbCmMmUr61JYgtlxhRI5x25jp93oLTx6FTz6usIrKMKdLfZZBjs7xyhU5tNu
     parsed_output = parse_etc_shadow_file(command_output)
     assert len(parsed_output) == 3
     assert parsed_output[0] == {
-        'expiration_date': '',
-        'inactive_days': '',
-        'last_change': '18144',
-        'max_days': '99999',
-        'min_days': '0',
-        'password_hash': '2tEZaTxsJGHnkmwPzXsjRVD41DXbNxyk6OYd2XpckFgXG0QbXX1XUfnj5Qsq.y7AkJ5XyffwzKQgxE3lfrP8F/',
-        'reserved': '',
-        'salt': 'randomsalt',
-        'username': 'user1',
-        'warning_days': '7'
+        "expiration_date": "",
+        "inactive_days": "",
+        "last_change": "18144",
+        "max_days": "99999",
+        "min_days": "0",
+        "password_hash": "2tEZaTxsJGHnkmwPzXsjRVD41DXbNxyk6OYd2XpckFgXG0QbXX1XUfnj5Qsq.y7AkJ5XyffwzKQgxE3lfrP8F/",
+        "reserved": "",
+        "salt": "randomsalt",
+        "username": "user1",
+        "warning_days": "7",
     }

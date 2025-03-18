@@ -15,7 +15,15 @@ ii  apt                             2.9.5+kali1                                 
 """
     parsed_output = parse_dpkg_l(command_output)
     assert len(parsed_output) == 4
-    assert parsed_output[0] == {'arch': 'all', 'description': 'grep-like program specifically for large source trees',
-                                'name': 'ack', 'version': '3.7.0-1'}
-    assert parsed_output[1] == {'arch': 'all', 'description': 'add and remove users and groups',
-                                'name': 'adduser', 'version': '3.137'}
+    assert parsed_output[0] == {
+        "arch": "all",
+        "description": "grep-like program specifically for large source trees",
+        "name": "ack",
+        "version": "3.7.0-1",
+    }
+    assert parsed_output[1] == {
+        "arch": "all",
+        "description": "add and remove users and groups",
+        "name": "adduser",
+        "version": "3.137",
+    }

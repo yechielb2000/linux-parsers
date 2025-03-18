@@ -1,7 +1,9 @@
 import re
 
+from typing import Dict, List, Any
 
-def parse_iptables(command_output: str) -> dict[str, list[any]]:
+
+def parse_iptables(command_output: str) -> Dict[str, List[Any]]:
     """Parse `iptables -L -n -v` command output."""
     record_pattern = re.compile(
         "^(?P<pkts>\d+)\s+"
@@ -21,7 +23,7 @@ def parse_iptables(command_output: str) -> dict[str, list[any]]:
     for line in command_output.splitlines():
         line = line.strip()
         if line.startswith("Chain"):
-            policy = re.search(r'(?<=Chain\s)(\S+)', line).group()
+            policy = re.search(r"(?<=Chain\s)(\S+)", line).group()
             parsed_command[policy] = []
             current_policy = policy
             continue
