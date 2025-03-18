@@ -48,4 +48,4 @@ jobs:
           uv sync --all-extras --dev
 
       - name: Test Commands on Multi Operating Systems
-        run: uv pytest ./tests/dynamic_tests.py
+        run: uv run pytest ./tests/dynamic_tests.py
