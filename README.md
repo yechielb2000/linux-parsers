@@ -72,6 +72,7 @@ print(parsed_command_output)
 - [proc_meminfo.py](linux_parsers/parsers/system/proc_meminfo.py) - parse file: `/proc/meminfo`.
 - [proc_uptime.py](linux_parsers/parsers/system/proc_uptime.py) - parse file: `/proc/uptime`
 - [service.py](linux_parsers/parsers/system/service.py) - parse commands: `service --status-all`.
+- [etc_systemd_file_conf.py](linux_parsers/parsers/system/etc_systemd_file_conf.py) - parse files: `/etc/systemd/*.conf`.
 - [uname.py](linux_parsers/parsers/system/uname.py) - parse commands: `uname -a`.
 - [vmstat.py](linux_parsers/parsers/system/vmstat.py) - parse commands: `vmstat`, `vmstat -adt`.
 
