@@ -71,7 +71,7 @@ jobs:
 
   github-release:
     runs-on: ubuntu-latest
-    needs: [ details ]
+    needs: [ details, release-build ]
     permissions:
       contents: write
     steps:
