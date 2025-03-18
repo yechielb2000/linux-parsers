@@ -4,12 +4,8 @@ from typing import Any, Dict, List
 
 def parse_ip_a(command_output: str) -> Dict[str, Dict[str, Any]]:
     link_pattern = re.compile("link/(?P<link>.+)\s(?P<ip>.+)\sbrd\s(?P<brd>.+)")
-    lease_time_pattern = re.compile(
-        "valid_lft\s(?P<valid_lft>\S+)\spreferred_lft\s(?P<preferred_lft>\S+)"
-    )
-    ip_pattern = re.compile(
-        "(?P<type>inet6?)\s(?P<ip>\S+)(?:\sbrd\s(?P<brd>\S+))?\s+scope\s(?P<scope>.+)"
-    )
+    lease_time_pattern = re.compile("valid_lft\s(?P<valid_lft>\S+)\spreferred_lft\s(?P<preferred_lft>\S+)")
+    ip_pattern = re.compile("(?P<type>inet6?)\s(?P<ip>\S+)(?:\sbrd\s(?P<brd>\S+))?\s+scope\s(?P<scope>.+)")
     interface_data = re.compile(
         "(?P<index>\d):\s"
         "(?P<iface>\S+):\s"
@@ -21,9 +17,7 @@ def parse_ip_a(command_output: str) -> Dict[str, Dict[str, Any]]:
         "(?:\sqlen\s(?P<qlen>\d+))?"
     )
     interfaces = {}
-    blocks = re.split(
-        r"\n(?=\d+:)", command_output.strip()
-    )  # Split on lines that start with a digit
+    blocks = re.split(r"\n(?=\d+:)", command_output.strip())  # Split on lines that start with a digit
 
     for block in blocks:
         lines: List[str] = [i.strip() for i in block.splitlines()]
@@ -34,9 +28,7 @@ def parse_ip_a(command_output: str) -> Dict[str, Dict[str, Any]]:
         interfaces[iface_index]["addresses"] = []
         if lines and lines[0].startswith("link/"):
             regex_result = link_pattern.search(lines.pop(0))
-            interfaces[iface_index]["link"] = (
-                regex_result.groupdict() if regex_result else {}
-            )
+            interfaces[iface_index]["link"] = regex_result.groupdict() if regex_result else {}
         while lines:
             line = lines.pop(0)
             if line.startswith("inet"):
@@ -44,7 +36,7 @@ def parse_ip_a(command_output: str) -> Dict[str, Dict[str, Any]]:
                 inet = regex_result.groupdict() if regex_result else {}
                 if lines and lines[0].startswith("valid_lft"):
                     regex_result = lease_time_pattern.search(lines.pop(0))
-                    inet |= regex_result.groupdict() if regex_result else {}
+                    inet.update(regex_result.groupdict() if regex_result else {})
                 interfaces[iface_index]["addresses"].append(inet)
     return interfaces
 

@@ -1,0 +1,36 @@
+name: Run Checks
+on: push
+jobs:
+  setup:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python_versions: [ "3.8", "3.9", "3.10", "3.11", "3.12", "3.13" ]
+        os: [ ubuntu-latest, windows-latest ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python_versions }}
+
+      - name: Install dependencies
+        run: |
+          uv sync --all-extras --dev
+  ruff:
+    runs-on: ${{ needs.setup.matrix.os }}
+    needs: [ setup ]
+    steps:
+      - name: Run Ruff Check
+        run: uv run ruff check
+
+  pytest:
+    runs-on: ${{ needs.setup.matrix.os }}
+    needs: [ setup ]
+    steps:
+      - name: Run Pytest
+        run: uv run pytest

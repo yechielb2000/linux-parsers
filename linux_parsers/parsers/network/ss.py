@@ -19,12 +19,8 @@ def parse_ss_tulnap(command_output: str) -> List[Dict[str, Any]]:
 def parse_ss_s(command_output: str) -> Dict[str, Any]:
     """Parse `ss -s` command output."""
     lines = [i.strip() for i in command_output.splitlines() if i.strip()]
-    parsed_command = re.search(
-        r"\w+:\s+(?P<total>\d+)\s\(\w+\s+(?P<kernel>\d+)\)", lines.pop(0)
-    ).groupdict()
-    tcp_total, estab, closed, orphaned, synrecv, timewait, can_handle = re.findall(
-        r"\d+", lines.pop(0)
-    )
+    parsed_command = re.search(r"\w+:\s+(?P<total>\d+)\s\(\w+\s+(?P<kernel>\d+)\)", lines.pop(0)).groupdict()
+    tcp_total, estab, closed, orphaned, synrecv, timewait, can_handle = re.findall(r"\d+", lines.pop(0))
     parsed_command["TCP"] = {
         "tcp_total": tcp_total,
         "estab": estab,
@@ -40,9 +36,7 @@ def parse_ss_s(command_output: str) -> Dict[str, Any]:
         line = lines.pop(0)
     parsed_command["transports"] = []
     while lines:
-        regex_result = re.search(
-            "(?P<protocol>\w+)\s+(?P<total>\d+)\s+(?P<ip>\d+)\s+(?P<ipv6>\d+)", line
-        )
+        regex_result = re.search("(?P<protocol>\w+)\s+(?P<total>\d+)\s+(?P<ip>\d+)\s+(?P<ipv6>\d+)", line)
         if regex_result:
             parsed_command["transports"].append(regex_result.groupdict())
         line = lines.pop(0)

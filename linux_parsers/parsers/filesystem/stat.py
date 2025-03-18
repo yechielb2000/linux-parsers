@@ -28,9 +28,9 @@ def parse_stat(command_output: str) -> Dict[str, Any]:
     while lines:
         line = lines.pop(0)
         if line.startswith("Size:"):
-            parsed_command |= storage_pattern.search(line).groupdict()
+            parsed_command.update(storage_pattern.search(line).groupdict())
         elif line.startswith("Device:"):
-            parsed_command |= metadata_pattern.search(line).groupdict()
+            parsed_command.update(metadata_pattern.search(line).groupdict())
         elif "Uid" in line:
             parsed_command["permissions"] = permissions_pattern.search(line).groupdict()
         elif line.startswith("Access:"):

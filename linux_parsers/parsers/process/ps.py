@@ -15,9 +15,7 @@ def parse_ps_aux(command_output: str) -> List[Dict[str, Any]]:
 def parse_ps_ax(command_output: str) -> List[Dict[str, Any]]:
     """Parse `ps -ax` command output."""
     lines = "\n".join([i.strip() for i in command_output.splitlines() if i.strip()])
-    pattern = re.compile(
-        r"(?P<pid>\d+)\s+(?P<tty>\S+)\s+(?P<stat>\S+)\s+(?P<time>\S+)\s+(?P<command>.+)"
-    )
+    pattern = re.compile(r"(?P<pid>\d+)\s+(?P<tty>\S+)\s+(?P<stat>\S+)\s+(?P<time>\S+)\s+(?P<command>.+)")
     return [i.groupdict() for i in pattern.finditer(lines)]
 
 

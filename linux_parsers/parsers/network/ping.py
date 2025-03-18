@@ -30,15 +30,11 @@ def parse_ping(command_output: str) -> Dict[str, Any]:
         if "rtt" in line:
             regex_result = rtt_pattern.search(line)
             if not regex_result:
-                raise UnexpectedParseException(
-                    f"rtt pattern failed: {rtt_pattern}\n{command_output}"
-                )
+                raise UnexpectedParseException(f"rtt pattern failed: {rtt_pattern}\n{command_output}")
             parsed_command["rtt"] = regex_result.groupdict()
         if "packets transmitted" in line:
             regex_result = statistics_pattern.search(line)
             if not regex_result:
-                raise UnexpectedParseException(
-                    f"statistics pattern failed: {statistics_pattern}\n{command_output}"
-                )
+                raise UnexpectedParseException(f"statistics pattern failed: {statistics_pattern}\n{command_output}")
             parsed_command["statistics"] = regex_result.groupdict()
     return parsed_command

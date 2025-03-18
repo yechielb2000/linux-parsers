@@ -51,7 +51,5 @@ def parse_fdisk(command_output: str) -> Dict[str, Any]:
             else:
                 regex_result = partition_entry_pattern.search(line)
                 if regex_result:
-                    parsed_disks[name]["partition_entries"].append(
-                        regex_result.groupdict()
-                    )
+                    parsed_disks[name]["partition_entries"].append(regex_result.groupdict())
     return parsed_disks

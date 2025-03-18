@@ -22,14 +22,10 @@ def parse_top(command_output: str) -> Dict[str, Any]:
             parsed_command["system"] = system_pattern.search(line).groupdict()
         elif line.startswith("Tasks:"):
             to, ru, sl, st, zo = re.findall(r"(\d+)", line)
-            parsed_command["tasks"] = dict(
-                total=to, running=ru, sleeping=sl, stopped=st, zombie=zo
-            )
+            parsed_command["tasks"] = dict(total=to, running=ru, sleeping=sl, stopped=st, zombie=zo)
         elif line.startswith("%Cpu"):
             us, sy, ni, id_, wa, hi, si, st = re.findall(r"(\d+.\d+)", line)
-            parsed_command["cpu"] = dict(
-                us=us, sy=sy, ni=ni, id=id_, wa=wa, hi=hi, si=si, st=st
-            )
+            parsed_command["cpu"] = dict(us=us, sy=sy, ni=ni, id=id_, wa=wa, hi=hi, si=si, st=st)
         elif line.startswith("MiB Mem"):
             to, fr, us, ca = re.findall(r"(\d+.\d+)", line)
             parsed_command["mem"] = dict(total=to, free=fr, used=us, cache=ca)
