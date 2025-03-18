@@ -1,6 +1,6 @@
 [project]
 name = "linux-parsers"
-version = "0.2.0"
+version = "0.2.1"
 requires-python = ">=3.8"
 dependencies = []
 license = { text = "LICENSE" }
