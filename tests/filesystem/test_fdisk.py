@@ -46,7 +46,4 @@ Device     Boot   Start        End    Sectors   Size Id Type
     assert len(parsed_command["/dev/sda"]["partition_entries"]) == 7
     assert parsed_command["/dev/sda"]["model"] == "Samsung SSD 860"
     assert parsed_command["/dev/sda"]["label_type"] == "gpt"
-    assert (
-        parsed_command["/dev/sda"]["identifier"]
-        == "C1D2E3F4-G5H6-I7J8-K9L0-M1N2O3P4Q5R6"
-    )
+    assert parsed_command["/dev/sda"]["identifier"] == "C1D2E3F4-G5H6-I7J8-K9L0-M1N2O3P4Q5R6"

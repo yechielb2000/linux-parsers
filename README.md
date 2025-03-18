@@ -70,7 +70,9 @@ print(parsed_command_output)
 - [mpstat.py](linux_parsers/parsers/system/mpstat.py) - parse commands: `mpstat -P ALL`.
 - [proc_cpuinfo.py](linux_parsers/parsers/system/proc_cpuinfo.py) - parse file: `/proc/cpuinfo`.
 - [proc_meminfo.py](linux_parsers/parsers/system/proc_meminfo.py) - parse file: `/proc/meminfo`.
+- [proc_uptime.py](linux_parsers/parsers/system/proc_uptime.py) - parse file: `/proc/uptime`
 - [service.py](linux_parsers/parsers/system/service.py) - parse commands: `service --status-all`.
+- [etc_systemd_file_conf.py](linux_parsers/parsers/system/etc_systemd_file_conf.py) - parse files: `/etc/systemd/*.conf`.
 - [uname.py](linux_parsers/parsers/system/uname.py) - parse commands: `uname -a`.
 - [vmstat.py](linux_parsers/parsers/system/vmstat.py) - parse commands: `vmstat`, `vmstat -adt`.
 
@@ -83,6 +85,67 @@ print(parsed_command_output)
 - [etc_shadow.py](linux_parsers/parsers/users/etc_shadow.py) - parse file: `/etc/shadow`.
 - [useradd.py](linux_parsers/parsers/users/useradd.py) - parse commands: `useradd -D`.
 
+
 ## Contribute
 
-If you'd like to add parsers, feel free to ask me, or you can fork the project and submit a pull request.  
+Thank you for considering contributing to this project! Whether you want to add parsers, fix bugs, or enhance the project, your contributions are welcome. Follow the instructions below to get started.
+
+### How to Contribute
+
+1. **Fork the Repository**  
+   Click the "Fork" button on the top-right of this repository to create your own copy.
+
+2. **Clone Your Fork**  
+   Clone the repository to your local machine:
+   ```shell
+   git clone https://github.com/yechielb2000/linux-parsers.git
+   ```
+
+3. **Set Up the Project**  
+   Navigate into the project directory:
+   ```shell
+   cd linux-parsers
+   ```
+
+   Install dependencies and set up pre-commit hooks:
+   ```shell
+   uv sync
+   uv run pre-commit run --all-files
+   ```
+
+   This will ensure everything is up to date and that the code is formatted according to the project's standards.
+
+4. **Create a New Branch**  
+   Always create a new branch for your changes. The branch name should follow this convention:
+   - **Bug fixes**: `bugfix/parsername`
+   - **New parsers**: `feature/parsername`
+   - **Refactors**: `refactor/parsername`
+
+   Example:
+   ```shell
+   git checkout -b feature/new-parser
+   ```
+
+5. **Make Your Changes**  
+   Add your parser or make any changes to the code. Ensure your changes are thoroughly tested and adhere to the project's guidelines.
+
+6. **Commit Your Changes**  
+   After making your changes, commit them with a clear message:
+   ```shell
+   git commit -m "Add new parser for XYZ"
+   ```
+
+7. **Push Your Changes**  
+   Push your changes to your fork:
+   ```shell
+   git push origin feature/new-parser
+   ```
+
+8. **Create a Pull Request**  
+   Go to the original repository on GitHub and create a pull request (PR) from your fork. Make sure to target the `main` branch. Provide a clear description of the changes in your PR, referencing any relevant issues.
+
+---
+
+### Thank You!
+
+We greatly appreciate your contributions to this project! Your work helps improve the project for everyone. If you have any questions or need help, don't hesitate to reach out.
