@@ -4,7 +4,7 @@ on:
     branches-ignore:
       - main
 jobs:
-  setup:
+  commands-test:
     runs-on:  ubuntu-latest
     strategy:
       matrix:
@@ -26,3 +26,26 @@ jobs:
 
       - name: Run Pytest
         run: uv run pytest
+
+  dynamic-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-latest, debian-11, fedora-36, centos-8]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install Dependencies
+        run: |
+          uv sync --all-extras --dev
+
+      - name: Test Commands on Multi Operating Systems
+        run: uv pytest ./tests/dynamic_tests.py
