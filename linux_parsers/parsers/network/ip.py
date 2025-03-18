@@ -3,6 +3,7 @@ from typing import Any, Dict, List
 
 
 def parse_ip_a(command_output: str) -> Dict[str, Dict[str, Any]]:
+    """Parse `ip a` command output."""
     link_pattern = re.compile("link/(?P<link>.+)\s(?P<ip>.+)\sbrd\s(?P<brd>.+)")
     lease_time_pattern = re.compile("valid_lft\s(?P<valid_lft>\S+)\spreferred_lft\s(?P<preferred_lft>\S+)")
     ip_pattern = re.compile("(?P<type>inet6?)\s(?P<ip>\S+)(?:\sbrd\s(?P<brd>\S+))?\s+scope\s(?P<scope>.+)")
@@ -42,9 +43,7 @@ def parse_ip_a(command_output: str) -> Dict[str, Dict[str, Any]]:
 
 
 def parse_ip_r(command_output: str) -> List[Dict[str, Any]]:
-    """
-    parse `ip route` command output.
-    """
+    """parse `ip route` command output."""
     pattern = re.compile(
         r"""
         (?P<type>default|blackhole|unreachable|prohibit|broadcast|\d+\.\d+\.\d+\.\d+/\d+)  # Route type or destination
@@ -61,9 +60,7 @@ def parse_ip_r(command_output: str) -> List[Dict[str, Any]]:
 
 
 def parse_ip_n(command_output: str) -> List[Dict[str, Any]]:
-    """
-    parse `ip n` command output.
-    """
+    """parse `ip n` command output."""
     pattern = re.compile(
         r"""
         (?P<ip>(?:\d{1,3}\.){3}\d{1,3} | [a-fA-F0-9:]+)  # IPv4 or IPv6 address
