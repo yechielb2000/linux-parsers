@@ -1,7 +1,9 @@
 import re
 
+from typing import List, Dict, Any
 
-def parse_etc_passwd_file(command_output: str) -> list[dict[str, any]]:
+
+def parse_etc_passwd_file(command_output: str) -> List[Dict[str, Any]]:
     """Parse `cat /etc/passwd` command output"""
     pattern = re.compile(
         r"^\b(?P<username>[^:]+)"
@@ -11,6 +13,6 @@ def parse_etc_passwd_file(command_output: str) -> list[dict[str, any]]:
         r":(?P<comment>[^:]*)"
         r":(?P<home>[^:]+)"
         r":(?P<shell>[^:]*)$",
-        re.MULTILINE
+        re.MULTILINE,
     )
     return [i.groupdict() for i in pattern.finditer(command_output)]

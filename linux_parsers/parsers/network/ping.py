@@ -1,9 +1,10 @@
 import re
+from typing import Dict, Any
 
 from linux_parsers.parsers.exceptions import UnexpectedParseException
 
 
-def parse_ping(command_output: str) -> dict[str, any]:
+def parse_ping(command_output: str) -> Dict[str, Any]:
     rtt_pattern = re.compile(".+=\s(?P<min>\S+)/(?P<avg>\S+)/(?P<max>\S+)/(?P<mdev>.+)")
     header_pattern = re.compile(
         "PING\s(?P<target>\S+)\s\((?P<resolvedIp>\S+)\)\s(?P<payloadSize>\d+)\((?P<totalPacketSize>\d+)\).+"
@@ -21,7 +22,7 @@ def parse_ping(command_output: str) -> dict[str, any]:
     )
     lines = list(filter(lambda x: x.strip(), command_output.splitlines()))
     parsed_command = header_pattern.search(lines[0]).groupdict()
-    parsed_command['records'] = []
+    parsed_command["records"] = []
     while lines:
         line = lines.pop(0)
         if "bytes from" in line:
@@ -29,11 +30,15 @@ def parse_ping(command_output: str) -> dict[str, any]:
         if "rtt" in line:
             regex_result = rtt_pattern.search(line)
             if not regex_result:
-                raise UnexpectedParseException(f"rtt pattern failed: {rtt_pattern}\n{command_output}")
-            parsed_command['rtt'] = regex_result.groupdict()
+                raise UnexpectedParseException(
+                    f"rtt pattern failed: {rtt_pattern}\n{command_output}"
+                )
+            parsed_command["rtt"] = regex_result.groupdict()
         if "packets transmitted" in line:
             regex_result = statistics_pattern.search(line)
             if not regex_result:
-                raise UnexpectedParseException(f"statistics pattern failed: {statistics_pattern}\n{command_output}")
-            parsed_command['statistics'] = regex_result.groupdict()
+                raise UnexpectedParseException(
+                    f"statistics pattern failed: {statistics_pattern}\n{command_output}"
+                )
+            parsed_command["statistics"] = regex_result.groupdict()
     return parsed_command

@@ -1,7 +1,9 @@
 import re
 
+from typing import List, Dict, Any
 
-def parse_mount(command_output: str) -> list[dict[str, any]]:
+
+def parse_mount(command_output: str) -> List[Dict[str, Any]]:
     """Parse command output of `cat /proc/mounts` or `mount`."""
     pattern = re.compile(
         r"(?P<device>\S+)\s+"
@@ -14,6 +16,6 @@ def parse_mount(command_output: str) -> list[dict[str, any]]:
     parsed_command = []
     for i in pattern.finditer(command_output):
         record = i.groupdict()
-        record['mount_options'] = record['mount_options'].split(',')
+        record["mount_options"] = record["mount_options"].split(",")
         parsed_command.append(record)
     return parsed_command

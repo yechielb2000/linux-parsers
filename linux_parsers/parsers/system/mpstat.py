@@ -1,7 +1,9 @@
 import re
 
+from typing import Dict, Any
 
-def parse_mpstat(command_output: str) -> dict[str, any]:
+
+def parse_mpstat(command_output: str) -> Dict[str, Any]:
     """Parse `mpstat -P ALL` command output."""
     metadata_pattern = re.compile(
         r"(?P<os>[\s\S]+)\s\((?P<hostname>.+)\)\s+(?P<execute_date>\d+/\d+/\d+)"
@@ -14,7 +16,7 @@ def parse_mpstat(command_output: str) -> dict[str, any]:
     )
     lines = [i.strip() for i in command_output.splitlines() if i.strip()]
     parsed_output = metadata_pattern.search(lines.pop(0)).groupdict()
-    parsed_output['statistics'] = []
+    parsed_output["statistics"] = []
     while lines:
         line = lines.pop(0)
         regex_result = statistics_pattern.search(line)

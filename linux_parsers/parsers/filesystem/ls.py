@@ -1,7 +1,9 @@
 import re
 
+from typing import List, Dict, Any
 
-def parse_ls(command_output: str) -> list[dict[str, any]]:
+
+def parse_ls(command_output: str) -> List[Dict[str, Any]]:
     """Parse `ls -la` command output."""
     pattern = re.compile(
         r"(?P<Permissions>\S+)\s+"
