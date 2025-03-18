@@ -1,7 +1,9 @@
 import re
 
+from typing import Dict, List, Any
 
-def parse_vmstat(command_output: str) -> list[dict[str, dict]]:
+
+def parse_vmstat(command_output: str) -> List[Dict[str, Dict]]:
     """Parse `vmstat` command output."""
     pattern = re.compile(
         r"\s+(?P<r>\d+)\s+(?P<b>\d+)\s+(?P<swpd>\d+)\s+(?P<free>\d+)\s+(?P<buff>\d+)\s+"
@@ -35,9 +37,6 @@ def parse_vmstat(command_output: str) -> list[dict[str, dict]]:
             }
         )
     return parsed_command
-
-
-from typing import Dict, Any
 
 
 def parse_vmstat_adt(command_output: str) -> Dict[str, Any]:

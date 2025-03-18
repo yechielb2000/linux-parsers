@@ -31,10 +31,10 @@ Chain DOCKER (policy ACCEPT 0 packets, 0 bytes)
    50      25000  DROP       all  --  *      *       192.168.0.0/16         0.0.0.0/0            
     """
     parsed_command = parse_iptables(command_output)
-    assert list(parsed_command.keys()) == ['INPUT', 'FORWARD', 'OUTPUT', 'DOCKER']
-    assert len(parsed_command['FORWARD']) == 2
-    assert len(parsed_command['OUTPUT']) == 2
-    assert len(parsed_command['DOCKER']) == 2
-    assert parsed_command['FORWARD'][0]['target'] == 'REJECT'
-    assert parsed_command['FORWARD'][1]['target'] == 'LOG'
-    assert parsed_command['FORWARD'][1]['rule'] == 'LOG level info'
+    assert list(parsed_command.keys()) == ["INPUT", "FORWARD", "OUTPUT", "DOCKER"]
+    assert len(parsed_command["FORWARD"]) == 2
+    assert len(parsed_command["OUTPUT"]) == 2
+    assert len(parsed_command["DOCKER"]) == 2
+    assert parsed_command["FORWARD"][0]["target"] == "REJECT"
+    assert parsed_command["FORWARD"][1]["target"] == "LOG"
+    assert parsed_command["FORWARD"][1]["rule"] == "LOG level info"

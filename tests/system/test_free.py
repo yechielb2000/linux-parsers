@@ -13,9 +13,27 @@ Comm:     6282031104   417738752  5864292352
 
 """
     parsed_output = parse_free_btlv(command_output)
-    assert parsed_output['High'] == {'available': None, 'cache': None, 'free': '0',
-                                    'shared': None, 'total': '0', 'used': '0'}
-    assert parsed_output['Swap'] == {'available': None, 'cache': None, 'free': '2147483648',
-                                     'shared': None, 'total': '2147483648', 'used': '0'}
-    assert parsed_output['Comm'] == {'available': None, 'cache': None, 'free': '5864292352',
-                                      'shared': None, 'total': '6282031104', 'used': '417738752'}
+    assert parsed_output["High"] == {
+        "available": None,
+        "cache": None,
+        "free": "0",
+        "shared": None,
+        "total": "0",
+        "used": "0",
+    }
+    assert parsed_output["Swap"] == {
+        "available": None,
+        "cache": None,
+        "free": "2147483648",
+        "shared": None,
+        "total": "2147483648",
+        "used": "0",
+    }
+    assert parsed_output["Comm"] == {
+        "available": None,
+        "cache": None,
+        "free": "5864292352",
+        "shared": None,
+        "total": "6282031104",
+        "used": "417738752",
+    }

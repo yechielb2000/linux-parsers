@@ -38,9 +38,9 @@ VmallocTotal:   34359738367 kB
 
 """
     parsed_output = parse_proc_meminfo_file(command_output)
-    assert parsed_output['MemTotal'] == '8075284 kB'
-    assert parsed_output['MemFree'] == '7565888 kB'
-    assert parsed_output['MemAvailable'] == '7523676 kB'
-    assert parsed_output['Buffers'] == '9856 kB'
-    assert parsed_output['Cached'] == '147924 kB'
-    assert parsed_output['SwapCached'] == '0 kB'
+    assert parsed_output["MemTotal"] == "8075284 kB"
+    assert parsed_output["MemFree"] == "7565888 kB"
+    assert parsed_output["MemAvailable"] == "7523676 kB"
+    assert parsed_output["Buffers"] == "9856 kB"
+    assert parsed_output["Cached"] == "147924 kB"
+    assert parsed_output["SwapCached"] == "0 kB"

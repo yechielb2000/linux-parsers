@@ -22,6 +22,6 @@ none              4037644        76   4037568   1% /mnt/wslg/doc
 C:\             248904004 214140520  34763484  87% /mnt/c
     """
     parsed_command = parse_df(command_output)
-    assert parsed_command[5]['Filesystem'] == 'none'
-    assert parsed_command[1]['Blocks'] == '4037644'
-    assert parsed_command[2]['UsePercent'] == '87'
+    assert parsed_command[5]["Filesystem"] == "none"
+    assert parsed_command[1]["Blocks"] == "4037644"
+    assert parsed_command[2]["UsePercent"] == "87"

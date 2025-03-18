@@ -48,7 +48,13 @@ def test_hwinfo():
 """
     parsed_command = parse_hwinfo(command_output)
     assert len(parsed_command) == 3
-    assert parsed_command[0]['Arch'] =='X86-64'
-    assert parsed_command[0]['Clock'] == '1992 MHz'
-    assert parsed_command[1]['Config Status'] == 'cfg=new, avail=yes, need=no, active=unknown'
-    assert parsed_command[1]['Features'] == 'fpu,vme,de,pse,tsc,msr,pae,mce,cx8,apic,sep,mtrr,pge,mca,cmov,pat,pse36,clflush,mmx,fxsr,sse,sse2,ss,ht,syscall,nx,pdpe1gb,rdtscp,lm,constant_tsc,arch_perfmon,rep_good,nopl,xtopology,cpuid,pni,pclmulqdq,vmx,ssse3,fma,cx16,pdcm,pcid,sse4_1,sse4_2,movbe,popcnt,aes,xsave,avx,f16c,rdrand,hypervisor,lahf_lm,abm,3dnowprefetch,invpcid_single,pti,ssbd,ibrs,ibpb,stibp,tpr_shadow,vnmi,ept,vpid,ept_ad,fsgsbase,bmi1,avx2,smep,bmi2,erms,invpcid,rdseed,adx,smap,clflushopt,xsaveopt,xsavec,xgetbv1,xsaves,md_clear,flush_l1d,arch_capabilities'
+    assert parsed_command[0]["Arch"] == "X86-64"
+    assert parsed_command[0]["Clock"] == "1992 MHz"
+    assert (
+        parsed_command[1]["Config Status"]
+        == "cfg=new, avail=yes, need=no, active=unknown"
+    )
+    assert (
+        parsed_command[1]["Features"]
+        == "fpu,vme,de,pse,tsc,msr,pae,mce,cx8,apic,sep,mtrr,pge,mca,cmov,pat,pse36,clflush,mmx,fxsr,sse,sse2,ss,ht,syscall,nx,pdpe1gb,rdtscp,lm,constant_tsc,arch_perfmon,rep_good,nopl,xtopology,cpuid,pni,pclmulqdq,vmx,ssse3,fma,cx16,pdcm,pcid,sse4_1,sse4_2,movbe,popcnt,aes,xsave,avx,f16c,rdrand,hypervisor,lahf_lm,abm,3dnowprefetch,invpcid_single,pti,ssbd,ibrs,ibpb,stibp,tpr_shadow,vnmi,ept,vpid,ept_ad,fsgsbase,bmi1,avx2,smep,bmi2,erms,invpcid,rdseed,adx,smap,clflushopt,xsaveopt,xsavec,xgetbv1,xsaves,md_clear,flush_l1d,arch_capabilities"
+    )

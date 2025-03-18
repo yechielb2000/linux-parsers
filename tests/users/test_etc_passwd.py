@@ -12,7 +12,7 @@ a:x:1000:1000:,,,:/home/a:/bin/bash
 """
     parsed_output = parse_etc_passwd_file(command_output)
     assert len(parsed_output) == 5
-    assert parsed_output[0]['username'] == "systemd-network"
-    assert parsed_output[0]['password'] == "x"
-    assert parsed_output[1]['username'] == "messagebus"
-    assert parsed_output[1]['shell'] == "/usr/sbin/nologin"
+    assert parsed_output[0]["username"] == "systemd-network"
+    assert parsed_output[0]["password"] == "x"
+    assert parsed_output[1]["username"] == "messagebus"
+    assert parsed_output[1]["shell"] == "/usr/sbin/nologin"

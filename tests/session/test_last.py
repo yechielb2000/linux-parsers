@@ -20,7 +20,19 @@ nancy    ttyS2        -                Wed Mar 12 17:00 - 17:45  (00:45)
 """
     parsed_output = parse_last(command_output)
     assert len(parsed_output) == 14
-    assert parsed_output[0] == {'date': 'Sun Mar 16 14:03', 'end': None, 'start': None,
-                                'status': 'still logged in', 'tty': 'tty1', 'user': 'alice'}
-    assert parsed_output[11] == {'date': 'Thu Mar 13 19:00', 'end': '00:30', 'start': '19:30', 'status': None,
-                                 'tty': 'ttyS1', 'user': 'leo'}
+    assert parsed_output[0] == {
+        "date": "Sun Mar 16 14:03",
+        "end": None,
+        "start": None,
+        "status": "still logged in",
+        "tty": "tty1",
+        "user": "alice",
+    }
+    assert parsed_output[11] == {
+        "date": "Thu Mar 13 19:00",
+        "end": "00:30",
+        "start": "19:30",
+        "status": None,
+        "tty": "ttyS1",
+        "user": "leo",
+    }

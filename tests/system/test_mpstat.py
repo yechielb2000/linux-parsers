@@ -15,10 +15,10 @@ Linux 5.15.167.4-microsoft-standard-WSL2 (a)    03/11/2025      _x86_64_        
 
 """
     parsed_command = parse_mpstat(command_output)
-    assert parsed_command['hostname'] == 'a'
-    assert parsed_command['os'] == 'Linux 5.15.167.4-microsoft-standard-WSL2'
-    assert len(parsed_command['statistics']) == 6
-    assert parsed_command['statistics'][0]['time'] == '10:54:43 PM'
-    assert parsed_command['statistics'][1]['cpu'] == '4'
-    assert parsed_command['statistics'][2]['nice'] == '0.00'
-    assert parsed_command['statistics'][3]['idle'] == '99.84'
+    assert parsed_command["hostname"] == "a"
+    assert parsed_command["os"] == "Linux 5.15.167.4-microsoft-standard-WSL2"
+    assert len(parsed_command["statistics"]) == 6
+    assert parsed_command["statistics"][0]["time"] == "10:54:43 PM"
+    assert parsed_command["statistics"][1]["cpu"] == "4"
+    assert parsed_command["statistics"][2]["nice"] == "0.00"
+    assert parsed_command["statistics"][3]["idle"] == "99.84"

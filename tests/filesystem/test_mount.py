@@ -16,7 +16,7 @@ nfs-server:/exported/path /mnt/nfs nfs4 rw,relatime,vers=4.2,rsize=1048576,wsize
 """
     parsed_command = parse_mount(command_output)
     assert len(parsed_command) == 10
-    assert parsed_command[0]['device'] == '/dev/sda1'
-    assert parsed_command[0]['dump'] == '0'
-    assert parsed_command[4]['device'] == 'tmpfs'
-    assert parsed_command[8]['filesystem_type'] == 'vfat'
+    assert parsed_command[0]["device"] == "/dev/sda1"
+    assert parsed_command[0]["dump"] == "0"
+    assert parsed_command[4]["device"] == "tmpfs"
+    assert parsed_command[8]["filesystem_type"] == "vfat"

@@ -9,7 +9,7 @@ def test_jobs():
 """
     parsed_command = parse_jobs(command_output)
     assert len(parsed_command) == 3
-    assert parsed_command[0]['job'] == 'nano report.txt &'
-    assert parsed_command[1]['job'] == 'vim log.txt &'
-    assert parsed_command[2]['job'] == 'htop &'
-    assert parsed_command[2]['priority'] == '+'
+    assert parsed_command[0]["job"] == "nano report.txt &"
+    assert parsed_command[1]["job"] == "vim log.txt &"
+    assert parsed_command[2]["job"] == "htop &"
+    assert parsed_command[2]["priority"] == "+"

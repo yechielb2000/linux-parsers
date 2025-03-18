@@ -1,4 +1,9 @@
-from linux_parsers.parsers.process.ps import parse_ps_aux, parse_ps_ax, parse_ps_caweL, parse_ps_fadel
+from linux_parsers.parsers.process.ps import (
+    parse_ps_aux,
+    parse_ps_ax,
+    parse_ps_caweL,
+    parse_ps_fadel,
+)
 
 
 def test_ps_aux():
@@ -15,13 +20,13 @@ a        10119  0.0  0.0   8164  3664 pts/1    R+   15:16   0:00 ps aux
     """
     parsed_command = parse_ps_aux(command_output)
     assert len(parsed_command) == 9
-    assert parsed_command[0]['rss'] == '1748'
-    assert parsed_command[0]['time'] == '0:00'
-    assert parsed_command[0]['start'] == '14:00'
-    assert parsed_command[2]['mem'] == '0.0'
-    assert parsed_command[2]['cpu'] == '0.0'
-    assert parsed_command[7]['command'] == '-bash'
-    assert parsed_command[7]['stat'] == 'Ss'
+    assert parsed_command[0]["rss"] == "1748"
+    assert parsed_command[0]["time"] == "0:00"
+    assert parsed_command[0]["start"] == "14:00"
+    assert parsed_command[2]["mem"] == "0.0"
+    assert parsed_command[2]["cpu"] == "0.0"
+    assert parsed_command[7]["command"] == "-bash"
+    assert parsed_command[7]["stat"] == "Ss"
 
 
 def test_ps_ax():
@@ -33,11 +38,11 @@ def test_ps_ax():
     """
     parsed_command = parse_ps_ax(command_output)
     assert len(parsed_command) == 3
-    assert parsed_command[0]['pid'] == '10'
-    assert parsed_command[1]['stat'] == 'Ss'
-    assert parsed_command[1]['time'] == '0:00'
-    assert parsed_command[2]['tty'] == 'pts/1'
-    assert parsed_command[2]['command'] == 'ps -x'
+    assert parsed_command[0]["pid"] == "10"
+    assert parsed_command[1]["stat"] == "Ss"
+    assert parsed_command[1]["time"] == "0:00"
+    assert parsed_command[2]["tty"] == "pts/1"
+    assert parsed_command[2]["command"] == "ps -x"
 
 
 def test_ps_caweL():
@@ -68,12 +73,12 @@ def test_ps_caweL():
     """
     parsed_command = parse_ps_caweL(command_output)
     assert len(parsed_command) == 22
-    assert parsed_command[0]['cls'] == 'TS'
-    assert parsed_command[0]['cmd'] == 'init(kali-linux'
-    assert parsed_command[2]['cmd'] == 'init'
-    assert parsed_command[2]['tty'] == 'hvc0'
-    assert parsed_command[9]['time'] == '00:00:00'
-    assert parsed_command[9]['tty'] == 'pts/0'
+    assert parsed_command[0]["cls"] == "TS"
+    assert parsed_command[0]["cmd"] == "init(kali-linux"
+    assert parsed_command[2]["cmd"] == "init"
+    assert parsed_command[2]["tty"] == "hvc0"
+    assert parsed_command[9]["time"] == "00:00:00"
+    assert parsed_command[9]["tty"] == "pts/0"
 
 
 def test_ps_fadel():
@@ -91,10 +96,10 @@ F S UID        PID  PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
     """
     parsed_command = parse_ps_fadel(command_output)
     assert len(parsed_command) == 9
-    assert parsed_command[0]['pid'] == '1'
-    assert parsed_command[1]['mem_addr'] == '-'
-    assert parsed_command[1]['cpu'] == '0'
-    assert parsed_command[1]['start_time'] == '14:00'
-    assert parsed_command[1]['priority'] == '80'
-    assert parsed_command[1]['nice_value'] == '0'
-    assert parsed_command[1]['waiting_channel'] == '-'
+    assert parsed_command[0]["pid"] == "1"
+    assert parsed_command[1]["mem_addr"] == "-"
+    assert parsed_command[1]["cpu"] == "0"
+    assert parsed_command[1]["start_time"] == "14:00"
+    assert parsed_command[1]["priority"] == "80"
+    assert parsed_command[1]["nice_value"] == "0"
+    assert parsed_command[1]["waiting_channel"] == "-"

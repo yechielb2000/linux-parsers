@@ -25,11 +25,11 @@ UDP       0         0         0.0.0.0:123            0.0.0.0:*             users
 
     parsed_result = parse_ss_tulnap(command_output)
     assert len(parsed_result) == 17
-    assert parsed_result[0]['PeerAddress_Port'] == '0.0.0.0:*'
-    assert parsed_result[1]['Process'] == 'users:(("nginx",pid=5678,fd=6))'
-    assert parsed_result[7]['State'] == 'TIME-WAIT'
-    assert  parsed_result[8]['State'] == 'CLOSE_WAIT'
-    assert parsed_result[13]['LocalAddress_Port'] == '[::]:80'
+    assert parsed_result[0]["PeerAddress_Port"] == "0.0.0.0:*"
+    assert parsed_result[1]["Process"] == 'users:(("nginx",pid=5678,fd=6))'
+    assert parsed_result[7]["State"] == "TIME-WAIT"
+    assert parsed_result[8]["State"] == "CLOSE_WAIT"
+    assert parsed_result[13]["LocalAddress_Port"] == "[::]:80"
 
 
 def test_ss_s():
@@ -50,9 +50,9 @@ INET      2244      1800      444
 FRAG      4         3         1
     """
     parsed_result = parse_ss_s(command_output)
-    assert parsed_result['total'] == '3000'
-    assert parsed_result['kernel'] == '3500'
-    assert parsed_result['TCP']['closed'] == '330'
-    assert parsed_result['UDP'] == '702'
-    assert parsed_result['RAW'] == '18'
-    assert parsed_result['transports'][0]['total'] == '18'
+    assert parsed_result["total"] == "3000"
+    assert parsed_result["kernel"] == "3500"
+    assert parsed_result["TCP"]["closed"] == "330"
+    assert parsed_result["UDP"] == "702"
+    assert parsed_result["RAW"] == "18"
+    assert parsed_result["transports"][0]["total"] == "18"

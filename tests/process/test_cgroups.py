@@ -1,4 +1,7 @@
-from linux_parsers.parsers.process.cgroups import parse_proc_cgroups_file, parse_proc_pid_cgroups_file
+from linux_parsers.parsers.process.cgroups import (
+    parse_proc_cgroups_file,
+    parse_proc_pid_cgroups_file,
+)
 
 
 def test_proc_cgroups_file():
@@ -21,8 +24,18 @@ misc    14      1       1
     """
     parsed_output = parse_proc_cgroups_file(command_output)
     assert len(parsed_output) == 14
-    assert parsed_output[0] == {'enabled': '1', 'hierarchy': '1', 'num_cgroups': '1', 'subsys_name': 'cpuset'}
-    assert parsed_output[1] == {'enabled': '1', 'hierarchy': '2', 'num_cgroups': '1', 'subsys_name': 'cpu'}
+    assert parsed_output[0] == {
+        "enabled": "1",
+        "hierarchy": "1",
+        "num_cgroups": "1",
+        "subsys_name": "cpuset",
+    }
+    assert parsed_output[1] == {
+        "enabled": "1",
+        "hierarchy": "2",
+        "num_cgroups": "1",
+        "subsys_name": "cpu",
+    }
 
 
 def test_proc_pid_cgroups_file():
@@ -45,8 +58,8 @@ def test_proc_pid_cgroups_file():
 """
     parsed_output = parse_proc_pid_cgroups_file(command_output)
     assert len(parsed_output) == 15
-    assert parsed_output[0]['controllers'] == 'misc'
-    assert parsed_output[1]['controllers'] == 'rdma'
-    assert parsed_output[2]['controllers'] == 'pids'
-    assert parsed_output[3]['hierarchy'] == '11'
-    assert parsed_output[4]['hierarchy'] == '10'
+    assert parsed_output[0]["controllers"] == "misc"
+    assert parsed_output[1]["controllers"] == "rdma"
+    assert parsed_output[2]["controllers"] == "pids"
+    assert parsed_output[3]["hierarchy"] == "11"
+    assert parsed_output[4]["hierarchy"] == "10"
