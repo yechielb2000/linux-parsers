@@ -38,6 +38,7 @@ jobs:
 
   release-build:
     runs-on: ubuntu-latest
+    needs: [ details ]
     steps:
       - uses: actions/checkout@v4
 
@@ -58,7 +59,7 @@ jobs:
 
   pypi-publish:
     runs-on: ubuntu-latest
-    needs: [ release-build ]
+    needs: [ details, release-build ]
     environment:
       name: release
     permissions:
@@ -77,6 +78,7 @@ jobs:
           
   github-release:
     runs-on: ubuntu-latest
+    needs: [ details ]
     permissions:
       contents: write
     steps:
