@@ -8,8 +8,10 @@ repos:
     hooks:
       - id: ruff
         entry: uv run ruff check
+        language: system
       - id: ruff-format
         entry: uv run ruff format
+        language: system
   - repo: local
     hooks:
     - id: pytest
