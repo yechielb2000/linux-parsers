@@ -70,6 +70,7 @@ print(parsed_command_output)
 - [mpstat.py](linux_parsers/parsers/system/mpstat.py) - parse commands: `mpstat -P ALL`.
 - [proc_cpuinfo.py](linux_parsers/parsers/system/proc_cpuinfo.py) - parse file: `/proc/cpuinfo`.
 - [proc_meminfo.py](linux_parsers/parsers/system/proc_meminfo.py) - parse file: `/proc/meminfo`.
+- [proc_uptime.py](linux_parsers/parsers/system/proc_uptime.py) - parse file: `/proc/uptime`
 - [service.py](linux_parsers/parsers/system/service.py) - parse commands: `service --status-all`.
 - [uname.py](linux_parsers/parsers/system/uname.py) - parse commands: `uname -a`.
 - [vmstat.py](linux_parsers/parsers/system/vmstat.py) - parse commands: `vmstat`, `vmstat -adt`.
