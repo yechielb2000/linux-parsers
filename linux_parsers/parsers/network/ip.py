@@ -79,6 +79,6 @@ def parse_ip_n(command_output: str) -> List[Dict[str, Any]]:
         (?:\s+lladdr\s+(?P<lladdr>(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}))?  # Optional MAC address
         \s+(?P<state>\S+)  # Neighbor state
     """,
-        re.VERBOSE,
+        flags=re.VERBOSE,
     )
     return [match.groupdict() for match in pattern.finditer(command_output)]
