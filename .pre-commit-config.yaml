@@ -7,8 +7,10 @@ repos:
     rev: main
     hooks:
       - id: ruff
+        entry: uv run ruff check
         args: ["linux_parsers"]
       - id: ruff-format
+        entry: uv run ruff format
         args: ["linux_parsers"]
   - repo: local
     hooks:
