@@ -88,3 +88,14 @@ print(parsed_command_output)
 ## Contribute
 
 If you'd like to add parsers, feel free to ask me, or you can fork the project and submit a pull request.  
+
+#### Add a parser
+First you will have to clone the repo (after you fork of course).
+```shell
+git clone https://github.com/yechielb2000/linux-parsers.git
+```
+After that you can initiate the project.
+```shell
+uv sync
+uv run pre-commit run --all-files
+```

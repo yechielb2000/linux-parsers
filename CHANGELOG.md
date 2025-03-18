@@ -1,5 +1,10 @@
+### 0.2.3 18.0.32025
+- Added file parser: `/etc/systemd/*.conf`.
+#### For Developers
+- Updated developers readme.
+
 ### 0.2.2 18.0.32025
-- Added parser: /proc/uptime.
+- Added file parser: `/proc/uptime`.
 #### For Developers
 - Added pre-commit hooks.
 - Added linter and tests workflows.
