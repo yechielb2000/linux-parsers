@@ -1,5 +1,5 @@
 import re
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 
 def parse_ac_p(command_output: str) -> Dict[str, Any]:
@@ -15,3 +15,8 @@ def parse_ac_p(command_output: str) -> Dict[str, Any]:
         if regex_result:
             parsed_output["users"].append(regex_result.groupdict())
     return parsed_output
+
+
+def parse_ac_d(command_output: str) -> List[Dict[str, Any]]:
+    pattern = re.compile(r"(?P<date>.+)\b\s+total\s+(?P<total>.+)")
+    return [i.groupdict() for i in pattern.finditer(command_output)]
