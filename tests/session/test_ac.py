@@ -1,4 +1,4 @@
-from linux_parsers.parsers.session.ac import parse_ac_p, parse_ac_d
+from linux_parsers.parsers.session.ac import parse_ac_p, parse_ac_d, parse_ac_pd
 
 
 def test_ac_p():
@@ -30,3 +30,24 @@ Apr 01   total     24.50
     assert parsed_command[0]["total"] == "0.00"
     assert parsed_command[3]["date"] == "Apr 01"
     assert parsed_command[3]["total"] == "24.50"
+
+
+def test_ac_pd():
+    command_output = """
+Mar 30:
+    user1           1.20
+    intern          2.05
+    total           3.25
+
+Mar 31:
+    user1           5.00
+    developer       7.80
+    total          12.80
+    
+"""
+    parsed_output = parse_ac_pd(command_output)
+    assert parsed_output
+    assert len(parsed_output) == 2
+    assert parsed_output["Mar 30"] is not None
+    assert parsed_output["Mar 30"]["user1"] == "1.20"
+    assert parsed_output["Mar 30"]["intern"] == "2.05"

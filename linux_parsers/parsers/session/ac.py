@@ -1,4 +1,5 @@
 import re
+from http.cookiejar import cut_port_re
 from typing import Dict, Any, List
 
 
@@ -20,3 +21,19 @@ def parse_ac_p(command_output: str) -> Dict[str, Any]:
 def parse_ac_d(command_output: str) -> List[Dict[str, Any]]:
     pattern = re.compile(r"(?P<date>.+)\b\s+total\s+(?P<total>.+)")
     return [i.groupdict() for i in pattern.finditer(command_output)]
+
+
+def parse_ac_pd(command_output: str):
+    parsed_output = {}
+    current_date = None
+
+    split_dates_pattern = re.compile(r"([A-Z][a-z]{2} \d{2}):")
+    date_fields_pattern = re.compile(r"\s+(\S+)\s+([\d.]+)")
+    for line in command_output.strip().splitlines():
+        if date := split_dates_pattern.search(line):
+            current_date = date.group(1)
+            parsed_output[current_date] = {}
+        elif current_date and (regex_result := date_fields_pattern.search(line)):
+            key, value = regex_result.groups()
+            parsed_output[current_date][key] = value
+    return parsed_output
