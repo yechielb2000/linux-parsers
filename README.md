@@ -72,6 +72,7 @@ print(parsed_command_output)
 - [mpstat.py](linux_parsers/parsers/system/mpstat.py) - parse commands: `mpstat -P ALL`.
 - [proc_cpuinfo.py](linux_parsers/parsers/system/proc_cpuinfo.py) - parse file: `/proc/cpuinfo`.
 - [proc_meminfo.py](linux_parsers/parsers/system/proc_meminfo.py) - parse file: `/proc/meminfo`.
+- [proc_devices.py](linux_parsers/parsers/system/proc_devices.py) - parse file: `/proc/devices`
 - [proc_uptime.py](linux_parsers/parsers/system/proc_uptime.py) - parse file: `/proc/uptime`
 - [service.py](linux_parsers/parsers/system/service.py) - parse commands: `service --status-all`.
 - [etc_systemd_file_conf.py](linux_parsers/parsers/system/etc_systemd_file_conf.py) - parse files:

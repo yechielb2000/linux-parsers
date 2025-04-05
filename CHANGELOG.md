@@ -2,6 +2,7 @@
 
 - Added command parser: `ac`.
 - Added command parser: `lsipc`.
+- Added file parser: `/proc/devices`
 
 ### 0.2.2 18.03.2025
 
