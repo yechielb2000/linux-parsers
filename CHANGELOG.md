@@ -1,6 +1,7 @@
 ### 0.2.3 05.04.2025
 
 - Added command parser: `ac`.
+- Added command parser: `lsipc`.
 
 ### 0.2.2 18.03.2025
 
