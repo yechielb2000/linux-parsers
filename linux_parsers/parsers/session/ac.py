@@ -1,9 +1,9 @@
 import re
-from http.cookiejar import cut_port_re
 from typing import Dict, Any, List
 
 
 def parse_ac_p(command_output: str) -> Dict[str, Any]:
+    """Parse `ac -p` command output."""
     user_data_pattern = re.compile(r"\s*(?P<user>\S+)\s+(?P<time>[\d.]+)")
     parsed_output = {"users": [], "total": None}
     lines = [i.strip() for i in command_output.splitlines() if i.strip()]
@@ -19,11 +19,13 @@ def parse_ac_p(command_output: str) -> Dict[str, Any]:
 
 
 def parse_ac_d(command_output: str) -> List[Dict[str, Any]]:
+    """Parse `ac -d` command output."""
     pattern = re.compile(r"(?P<date>.+)\b\s+total\s+(?P<total>.+)")
     return [i.groupdict() for i in pattern.finditer(command_output)]
 
 
 def parse_ac_pd(command_output: str):
+    """Parse `ac -pd` command output."""
     parsed_output = {}
     current_date = None
 
