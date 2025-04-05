@@ -60,6 +60,7 @@ print(parsed_command_output)
 - [last.py](linux_parsers/parsers/session/last.py) - parse commands: `last`.
 - [w.py](linux_parsers/parsers/session/w.py) - parse commands: `w`.
 - [who.py](linux_parsers/parsers/session/who.py) - parse commands: `who -a`.
+- [ac.py](linux_parsers/parsers/session/ac.py) - parse commands: `ac -d`, `ac -p`, `ac -pd`.
 
 #### System parsers
 
@@ -72,7 +73,8 @@ print(parsed_command_output)
 - [proc_meminfo.py](linux_parsers/parsers/system/proc_meminfo.py) - parse file: `/proc/meminfo`.
 - [proc_uptime.py](linux_parsers/parsers/system/proc_uptime.py) - parse file: `/proc/uptime`
 - [service.py](linux_parsers/parsers/system/service.py) - parse commands: `service --status-all`.
-- [etc_systemd_file_conf.py](linux_parsers/parsers/system/etc_systemd_file_conf.py) - parse files: `/etc/systemd/*.conf`.
+- [etc_systemd_file_conf.py](linux_parsers/parsers/system/etc_systemd_file_conf.py) - parse files:
+  `/etc/systemd/*.conf`.
 - [uname.py](linux_parsers/parsers/system/uname.py) - parse commands: `uname -a`.
 - [vmstat.py](linux_parsers/parsers/system/vmstat.py) - parse commands: `vmstat`, `vmstat -adt`.
 
@@ -85,10 +87,10 @@ print(parsed_command_output)
 - [etc_shadow.py](linux_parsers/parsers/users/etc_shadow.py) - parse file: `/etc/shadow`.
 - [useradd.py](linux_parsers/parsers/users/useradd.py) - parse commands: `useradd -D`.
 
-
 ## Contribute
 
-Thank you for considering contributing to this project! Whether you want to add parsers, fix bugs, or enhance the project, your contributions are welcome. Follow the instructions below to get started.
+Thank you for considering contributing to this project! Whether you want to add parsers, fix bugs, or enhance the
+project, your contributions are welcome. Follow the instructions below to get started.
 
 ### How to Contribute
 
@@ -117,9 +119,9 @@ Thank you for considering contributing to this project! Whether you want to add 
 
 4. **Create a New Branch**  
    Always create a new branch for your changes. The branch name should follow this convention:
-   - **Bug fixes**: `bugfix/parsername`
-   - **New parsers**: `feature/parsername`
-   - **Refactors**: `refactor/parsername`
+    - **Bug fixes**: `bugfix/parsername`
+    - **New parsers**: `feature/parsername`
+    - **Refactors**: `refactor/parsername`
 
    Example:
    ```shell
@@ -127,7 +129,8 @@ Thank you for considering contributing to this project! Whether you want to add 
    ```
 
 5. **Make Your Changes**  
-   Add your parser or make any changes to the code. Ensure your changes are thoroughly tested and adhere to the project's guidelines.
+   Add your parser or make any changes to the code. Ensure your changes are thoroughly tested and adhere to the
+   project's guidelines.
 
 6. **Commit Your Changes**  
    After making your changes, commit them with a clear message:
@@ -142,10 +145,12 @@ Thank you for considering contributing to this project! Whether you want to add 
    ```
 
 8. **Create a Pull Request**  
-   Go to the original repository on GitHub and create a pull request (PR) from your fork. Make sure to target the `main` branch. Provide a clear description of the changes in your PR, referencing any relevant issues.
+   Go to the original repository on GitHub and create a pull request (PR) from your fork. Make sure to target the `main`
+   branch. Provide a clear description of the changes in your PR, referencing any relevant issues.
 
 ---
 
 ### Thank You!
 
-We greatly appreciate your contributions to this project! Your work helps improve the project for everyone. If you have any questions or need help, don't hesitate to reach out.
+We greatly appreciate your contributions to this project! Your work helps improve the project for everyone. If you have
+any questions or need help, don't hesitate to reach out.
