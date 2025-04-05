@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+todo.md
 # C extensions
 *.so
 linux_parsers.egg-info
