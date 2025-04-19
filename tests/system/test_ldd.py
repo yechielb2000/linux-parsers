@@ -1,4 +1,4 @@
-from linux_parsers.parsers.system.ldd import parse_ldd
+from linux_parsers.parsers.system.ldd import parse_ldd, parse_ldd_version
 
 
 def test_ldd():
@@ -17,3 +17,15 @@ linux-vdso.so.1 (0x00007ffc8d1dc000)
         "path": "/lib/x86_64-linux-gnu/libisccfg-9.20.0-Debian.so",
         "program": "libisccfg-9.20.0-Debian.so",
     }
+
+
+def test_ldd_version():
+    command_output = """
+ldd (GNU libc) 2.31
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+Written by Roland McGrath and Ulrich Drepper.
+"""
+    parsed_output = parse_ldd_version(command_output)
+    assert parsed_output == "2.31"
