@@ -79,6 +79,7 @@ print(parsed_command_output)
   `/etc/systemd/*.conf`.
 - [uname.py](linux_parsers/parsers/system/uname.py) - parse commands: `uname -a`.
 - [vmstat.py](linux_parsers/parsers/system/vmstat.py) - parse commands: `vmstat`, `vmstat -adt`.
+- [ldd.py](linux_parsers/parsers/system/ldd.py) - parse commands: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
 
 #### Users parsers
 

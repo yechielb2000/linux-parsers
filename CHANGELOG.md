@@ -1,3 +1,7 @@
+### 0.2.4 12.04.2025
+
+- Added command parser: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
+
 ### 0.2.3 05.04.2025
 
 - Added command parser: `ac`.
