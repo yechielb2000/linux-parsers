@@ -50,7 +50,8 @@ print(parsed_command_output)
 
 #### Process parsers
 
-- [cgroups.py](linux_parsers/parsers/process/cgroups.py) - parse files: `/proc/cgroups`, `/proc/<pid>/cgroups`,
+- [cgroups.py](linux_parsers/parsers/process/cgroups.py) - parse commands & files: `/proc/cgroups`,
+  `/proc/<pid>/cgroups`,
   `/sys/fs/cgroup/<controller>/<cgroup_path>/cgroup.procs`, `systemd-cgls -al`.
 - [jobs.py](linux_parsers/parsers/process/jobs.py) - parse commands: `jobs`.
 - [ps.py](linux_parsers/parsers/process/ps.py) - parse commands: `ps aux`, `ps -ax`,`ps -caweL`, `ps -fadel`.
