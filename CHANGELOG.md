@@ -4,6 +4,7 @@
 - Added file parser: `/proc/version`.
 - Added command parser: `systemd-cgls -al`.
 - Added file parser: `/sys/fs/cgroup/<controller>/<cgroup_path>/cgroup.procs`.
+- Added file parser: `/proc/modules`.
 
 ### 0.2.3 05.04.2025
 

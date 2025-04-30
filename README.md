@@ -57,6 +57,7 @@ print(parsed_command_output)
 - [ps.py](linux_parsers/parsers/process/ps.py) - parse commands: `ps aux`, `ps -ax`,`ps -caweL`, `ps -fadel`.
 - [top.py](linux_parsers/parsers/process/top.py) - parse commands: `top`.
 - [lsipc.py](linux_parsers/parsers/process/lsipc.py) - parse commands: `lsipc`.
+- [proc_modules.py](linux_parsers/parsers/process/proc_modules.py) - parse files: `/proc/modules`.
 
 #### Session parsers
 
