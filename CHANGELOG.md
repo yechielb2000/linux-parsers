@@ -1,3 +1,11 @@
+### 0.2.4 12.04.2025
+
+- Added command parser: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
+- Added file parser: `/proc/version`.
+- Added command parser: `systemd-cgls -al`.
+- Added file parser: `/sys/fs/cgroup/<controller>/<cgroup_path>/cgroup.procs`.
+- Added file parser: `/proc/modules`.
+
 ### 0.2.3 05.04.2025
 
 - Added command parser: `ac`.
@@ -8,14 +16,6 @@
 
 - Added file parser: `/proc/uptime`.
 - Added file parser: `/etc/systemd/*.conf`.
-
-#### For Developers
-
-- Added pre-commit hooks.
-- Added linter and tests workflows.
-- Added tests for windows and linux in python versions from `3.9` to `3.13`.
-- Updated pyproject configurations for pytest and ruff.
-- Updated readme in the contributions section.
 
 ### 0.2.1 18.03.2025
 

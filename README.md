@@ -50,11 +50,14 @@ print(parsed_command_output)
 
 #### Process parsers
 
-- [cgroups.py](linux_parsers/parsers/process/cgroups.py) - parse files: `/proc/cgroups`, `/proc/<pid>/cgroups`.
+- [cgroups.py](linux_parsers/parsers/process/cgroups.py) - parse commands & files: `/proc/cgroups`,
+  `/proc/<pid>/cgroups`,
+  `/sys/fs/cgroup/<controller>/<cgroup_path>/cgroup.procs`, `systemd-cgls -al`.
 - [jobs.py](linux_parsers/parsers/process/jobs.py) - parse commands: `jobs`.
 - [ps.py](linux_parsers/parsers/process/ps.py) - parse commands: `ps aux`, `ps -ax`,`ps -caweL`, `ps -fadel`.
 - [top.py](linux_parsers/parsers/process/top.py) - parse commands: `top`.
 - [lsipc.py](linux_parsers/parsers/process/lsipc.py) - parse commands: `lsipc`.
+- [proc_modules.py](linux_parsers/parsers/process/proc_modules.py) - parse files: `/proc/modules`.
 
 #### Session parsers
 
@@ -72,6 +75,7 @@ print(parsed_command_output)
 - [mpstat.py](linux_parsers/parsers/system/mpstat.py) - parse commands: `mpstat -P ALL`.
 - [proc_cpuinfo.py](linux_parsers/parsers/system/proc_cpuinfo.py) - parse file: `/proc/cpuinfo`.
 - [proc_meminfo.py](linux_parsers/parsers/system/proc_meminfo.py) - parse file: `/proc/meminfo`.
+- [proc_version.py](linux_parsers/parsers/system/proc_version.py) - parse file: `/proc/version`.
 - [proc_devices.py](linux_parsers/parsers/system/proc_devices.py) - parse file: `/proc/devices`
 - [proc_uptime.py](linux_parsers/parsers/system/proc_uptime.py) - parse file: `/proc/uptime`
 - [service.py](linux_parsers/parsers/system/service.py) - parse commands: `service --status-all`.
@@ -79,6 +83,7 @@ print(parsed_command_output)
   `/etc/systemd/*.conf`.
 - [uname.py](linux_parsers/parsers/system/uname.py) - parse commands: `uname -a`.
 - [vmstat.py](linux_parsers/parsers/system/vmstat.py) - parse commands: `vmstat`, `vmstat -adt`.
+- [ldd.py](linux_parsers/parsers/system/ldd.py) - parse commands: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
 
 #### Users parsers
 

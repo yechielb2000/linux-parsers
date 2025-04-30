@@ -1,6 +1,7 @@
 from linux_parsers.parsers.process.cgroups import (
     parse_proc_cgroups_file,
     parse_proc_pid_cgroups_file,
+    parse_systemd_cgls,
 )
 
 
@@ -63,3 +64,27 @@ def test_proc_pid_cgroups_file():
     assert parsed_output[2]["controllers"] == "pids"
     assert parsed_output[3]["hierarchy"] == "11"
     assert parsed_output[4]["hierarchy"] == "10"
+
+
+def test_systemd_cgls():
+    command_output = """
+CGroup /:
+-.slice
+├─ 1 /init
+├─ 6 plan9 --control-socket 5 --log-level 4 --server-fd 6 --pipe-fd 8 --log-truncate
+├─ 9 /init
+├─10 /init
+├─11 -bash
+├─28 systemd-cgls -a
+└─29 less
+    """
+    parsed_output = parse_systemd_cgls(command_output)
+    assert parsed_output["-.slice"] == {
+        "1": "/init",
+        "10": "/init",
+        "11": "-bash",
+        "28": "systemd-cgls -a",
+        "29": "less",
+        "6": "plan9 --control-socket 5 --log-level 4 --server-fd 6 --pipe-fd 8 --log-truncate",
+        "9": "/init",
+    }
