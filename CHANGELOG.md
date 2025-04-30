@@ -14,14 +14,6 @@
 - Added file parser: `/proc/uptime`.
 - Added file parser: `/etc/systemd/*.conf`.
 
-#### For Developers
-
-- Added pre-commit hooks.
-- Added linter and tests workflows.
-- Added tests for windows and linux in python versions from `3.9` to `3.13`.
-- Updated pyproject configurations for pytest and ruff.
-- Updated readme in the contributions section.
-
 ### 0.2.1 18.03.2025
 
 - Bugfix: fix type annotations for python `3.8`.
