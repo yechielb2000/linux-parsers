@@ -2,6 +2,8 @@
 
 - Added command parser: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
 - Added file parser: `/proc/version`.
+- Added command parser: `systemd-cgls -al`.
+- Added file parser: `/sys/fs/cgroup/<controller>/<cgroup_path>/cgroup.procs`.
 
 ### 0.2.3 05.04.2025
 
