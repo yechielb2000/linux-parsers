@@ -6,7 +6,7 @@ def test_iostat():
 
 Linux 5.15.167.4-microsoft-standard-WSL2 (a)    03/11/2025      _x86_64_        (8 CPU)
 
-avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+avg-cpu:  %event   %nice %system %iowait  %steal   %idle
            0.05    0.00    0.15    0.01    0.00   99.79
 
 Device             tps    kB_read/s    kB_wrtn/s    kB_dscd/s    kB_read    kB_wrtn    kB_dscd
@@ -28,5 +28,5 @@ sdc               0.39         7.05         3.23         2.06      21189       9
         "nice": "0.00",
         "steal": "0.00",
         "system": "0.15",
-        "user": "0.05",
+        "event": "0.05",
     }

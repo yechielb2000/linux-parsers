@@ -26,7 +26,7 @@ nancy    ttyS2        -                Wed Mar 12 17:00 - 17:45  (00:45)
         "start": None,
         "status": "still logged in",
         "tty": "tty1",
-        "user": "alice",
+        "event": "alice",
     }
     assert parsed_output[11] == {
         "date": "Thu Mar 13 19:00",
@@ -34,5 +34,5 @@ nancy    ttyS2        -                Wed Mar 12 17:00 - 17:45  (00:45)
         "start": "19:30",
         "status": None,
         "tty": "ttyS1",
-        "user": "leo",
+        "event": "leo",
     }

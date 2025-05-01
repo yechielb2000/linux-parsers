@@ -6,8 +6,8 @@ def test_ls():
  drwx------ 15 a       a         4096 Feb 10 20:21 .
 drwxr-xr-x  3 root    root      4096 Oct  7 04:29 ..
 drwxr-xr-x  3 a       a         4096 Feb  9 16:38 2025-2-10
-lrwxrwxrwx  1 a       a           23 Nov 28 15:04 .aws -> /mnt/c/Users/user/.aws
-lrwxrwxrwx  1 a       a           25 Nov 28 15:04 .azure -> /mnt/c/Users/user/.azure
+lrwxrwxrwx  1 a       a           23 Nov 28 15:04 .aws -> /mnt/c/Users/event/.aws
+lrwxrwxrwx  1 a       a           25 Nov 28 15:04 .azure -> /mnt/c/Users/event/.azure
 -rw-------  1 a       a       109924 Mar  6 17:06 .bash_history
 -rw-r--r--  1 a       a          220 Oct  7 04:29 .bash_logout
 -rw-r--r--  1 a       a         5551 Oct  7 04:29 .bashrc

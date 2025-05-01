@@ -12,7 +12,7 @@ def test_ac_p():
     users = parsed_command["users"]
     total = parsed_command["total"]
     assert len(users) == 2
-    assert users[0]["user"] == "user1"
+    assert users[0]["event"] == "user1"
     assert users[1]["time"] == "0.12"
     assert total == "96.78"
 

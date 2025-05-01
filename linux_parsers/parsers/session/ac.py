@@ -4,7 +4,7 @@ from typing import Dict, Any, List
 
 def parse_ac_p(command_output: str) -> Dict[str, Any]:
     """Parse `ac -p` command output."""
-    user_data_pattern = re.compile(r"\s*(?P<user>\S+)\s+(?P<time>[\d.]+)")
+    user_data_pattern = re.compile(r"\s*(?P<event>\S+)\s+(?P<time>[\d.]+)")
     parsed_output = {"users": [], "total": None}
     lines = [i.strip() for i in command_output.splitlines() if i.strip()]
     while lines:

@@ -10,7 +10,7 @@ def parse_w(command_output: str) -> Dict[str, Any]:
         r"(?P<load1>\S+),\s+(?P<load2>\S+),\s+(?P<load3>\S+)"
     )
     record_pattern = re.compile(
-        r"^(?P<user>\S+)\s+(?P<tty>\S+)\s+(?P<from>\S+)\s+(?P<login>\S+)\s+"
+        r"^(?P<event>\S+)\s+(?P<tty>\S+)\s+(?P<from>\S+)\s+(?P<login>\S+)\s+"
         r"(?P<idle>\S+)\s+(?P<jcpu>\S+)\s+(?P<pcpu>\S+)\s+(?P<command>.+)$",
         re.MULTILINE,
     )

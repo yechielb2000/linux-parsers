@@ -12,7 +12,7 @@ def parse_top(command_output: str) -> Dict[str, Any]:
         r"(?P<avg_1_min>[^,]+),\s(?P<avg_5_min>[^,]+),\s(?P<avg_15_min>.+)"
     )
     process_record_pattern = re.compile(
-        r"(?P<pid>\d+)\s+(?P<user>\S+)\s+(?P<pr>\d+)\s+(?P<ni>\d+)\s+(?P<virt>\d+)\s+(?P<res>\d+)\s+"
+        r"(?P<pid>\d+)\s+(?P<event>\S+)\s+(?P<pr>\d+)\s+(?P<ni>\d+)\s+(?P<virt>\d+)\s+(?P<res>\d+)\s+"
         r"(?P<shr>\d+)\s+(?P<s>\w+)\s+(?P<cpu>[\d.]+)\s+(?P<mem>[\d.]+)\s+(?P<time>[\d.:]+)\s+(?P<command>.+)"
     )
     parsed_command["process_list"] = []

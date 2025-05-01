@@ -15,8 +15,8 @@ reboot     2025-03-16 08:15
 """
     parsed_output = parse_who_a(command_output)
     assert len(parsed_output["users_records"]) == 5
-    assert parsed_output["users_records"][0]["user"] == "alice"
-    assert parsed_output["users_records"][1]["user"] == "bob"
+    assert parsed_output["users_records"][0]["event"] == "alice"
+    assert parsed_output["users_records"][1]["event"] == "bob"
     assert parsed_output["users_records"][2]["from"] == "fe80::a00:27ff:fe8f:9fd0"
     assert parsed_output["system_records"]["system boot"]["date"] == "2025-03-16"
     assert parsed_output["system_records"]["system boot"]["time"] == "09:00"
