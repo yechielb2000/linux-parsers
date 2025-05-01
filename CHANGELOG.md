@@ -2,6 +2,7 @@
 
 - Added file parser: `/etc/fstab`.
 - Added logfile parser: `/var/log/secure`.
+- Added logfile parser: `/var/log/dpkg.log`.
 
 ### 0.2.4 30.04.2025
 
