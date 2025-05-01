@@ -1,7 +1,10 @@
 ### 0.2.5 01.05.2025
 
 - Added file parser: `/etc/fstab`.
-- Added logfile parsers: `/var/log/secure`, `/var/log/dpkg.log`, `/var/log/auth.log`.
+- Added logfile parser: `/var/log/secure`.
+- Added logfile parser: `/var/log/dpkg.log`.
+- Added logfile parser: `/var/log/auth.log`.
+- Added logfile parser: `/var/log/cron`.
 
 ### 0.2.4 30.04.2025
 
