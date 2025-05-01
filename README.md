@@ -95,6 +95,10 @@ print(parsed_command_output)
 - [etc_shadow.py](linux_parsers/parsers/users/etc_shadow.py) - parse file: `/etc/shadow`.
 - [useradd.py](linux_parsers/parsers/users/useradd.py) - parse commands: `useradd -D`.
 
+#### Logs parsers
+
+- [var_log_secure.py](linux_parsers/parsers/logs/var_log_secure.py) - parse logfile: `/var/log/secure`.
+
 ## Contribute
 
 Thank you for considering contributing to this project! Whether you want to add parsers, fix bugs, or enhance the
