@@ -98,6 +98,7 @@ print(parsed_command_output)
 #### Logs parsers
 
 - [var_log_secure.py](linux_parsers/parsers/logs/var_log_secure.py) - parse logfile: `/var/log/secure`.
+- [var_log_dpkg.py](linux_parsers/parsers/logs/var_log_dpkg.py) - parse logfile: `/var/log/dpkg.log`.
 
 ## Contribute
 
