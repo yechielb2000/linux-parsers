@@ -71,7 +71,7 @@ def test_systemd_cgls():
 CGroup /:
 -.slice
 ├─ 1 /init
-├─ 6 plan9 --control-socket 5 --log-level 4 --server-fd 6 --pipe-fd 8 --log-truncate
+├─ 6 plan9 --control-socket 5 --logs-level 4 --server-fd 6 --pipe-fd 8 --logs-truncate
 ├─ 9 /init
 ├─10 /init
 ├─11 -bash
@@ -85,6 +85,6 @@ CGroup /:
         "11": "-bash",
         "28": "systemd-cgls -a",
         "29": "less",
-        "6": "plan9 --control-socket 5 --log-level 4 --server-fd 6 --pipe-fd 8 --log-truncate",
+        "6": "plan9 --control-socket 5 --logs-level 4 --server-fd 6 --pipe-fd 8 --logs-truncate",
         "9": "/init",
     }

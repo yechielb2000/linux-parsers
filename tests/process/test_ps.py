@@ -9,10 +9,10 @@ from linux_parsers.parsers.process.ps import (
 def test_ps_aux():
     command_output = """
 root         1  0.0  0.0   2616  1748 hvc0     Sl+  14:00   0:00 /init
-root         5  0.0  0.0   2616     4 hvc0     Sl+  14:00   0:00 plan9 --control-socket 5 --log-level 4 --server-fd 6 --pipe-fd 8 --log-truncate
+root         5  0.0  0.0   2616     4 hvc0     Sl+  14:00   0:00 plan9 --control-socket 5 --logs-level 4 --server-fd 6 --pipe-fd 8 --logs-truncate
 root         8  0.0  0.0   2624   120 ?        Ss   14:00   0:00 /init
 root         9  0.0  0.0   2624   128 ?        S    14:00   0:00 /init
-a           10  0.3  0.0  32700  5732 pts/0    Ssl+ 14:00   0:14 /tmp/tmp.ozjZDppcnK/ijent grpc-stdio-server --log-level info --self-delete-on-exit
+a           10  0.3  0.0  32700  5732 pts/0    Ssl+ 14:00   0:14 /tmp/tmp.ozjZDppcnK/ijent grpc-stdio-server --logs-level info --self-delete-on-exit
 root      5950  0.0  0.0   2624   120 ?        Ss   14:45   0:00 /init
 root      5951  0.0  0.0   2624   128 ?        S    14:45   0:00 /init
 a         5952  0.0  0.0   7544  4280 pts/1    Ss   14:45   0:00 -bash
@@ -32,7 +32,7 @@ a        10119  0.0  0.0   8164  3664 pts/1    R+   15:16   0:00 ps aux
 def test_ps_ax():
     command_output = """
   PID TTY      STAT   TIME COMMAND
-   10 pts/0    Ssl+   0:08 /tmp/tmp.ozjZDppcnK/ijent grpc-stdio-server --log-level info --self-delete-on-exit
+   10 pts/0    Ssl+   0:08 /tmp/tmp.ozjZDppcnK/ijent grpc-stdio-server --logs-level info --self-delete-on-exit
  5952 pts/1    Ss     0:00 -bash
  6715 pts/1    R+     0:00 ps -x
     """
@@ -85,10 +85,10 @@ def test_ps_fadel():
     command_output = """
 F S UID        PID  PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
 4 S root         1     0  0  80   0 -   654 -      14:00 hvc0     00:00:00 /init
-0 S root         5     1  0  80   0 -   654 -      14:00 hvc0     00:00:00 plan9 --control-socket 5 --log-level 4 --server-fd 6 --pipe-fd 8 --log-truncate
+0 S root         5     1  0  80   0 -   654 -      14:00 hvc0     00:00:00 plan9 --control-socket 5 --logs-level 4 --server-fd 6 --pipe-fd 8 --logs-truncate
 5 S root         8     1  0  80   0 -   656 -      14:00 ?        00:00:00 /init
 5 S root         9     8  0  80   0 -   656 -      14:00 ?        00:00:00 /init
-4 S a           10     9  0  80   0 -  8175 futex_ 14:00 pts/0    00:00:15 /tmp/tmp.ozjZDppcnK/ijent grpc-stdio-server --log-level info --self-delete-on-exit
+4 S a           10     9  0  80   0 -  8175 futex_ 14:00 pts/0    00:00:15 /tmp/tmp.ozjZDppcnK/ijent grpc-stdio-server --logs-level info --self-delete-on-exit
 5 S root      5950     1  0  80   0 -   656 -      14:45 ?        00:00:00 /init
 5 S root      5951  5950  0  80   0 -   656 -      14:45 ?        00:00:00 /init
 4 S a         5952  5951  0  80   0 -  1886 do_wai 14:45 pts/1    00:00:00 -bash
