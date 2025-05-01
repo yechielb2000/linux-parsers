@@ -35,6 +35,7 @@ print(parsed_command_output)
 - [fdisk.py](linux_parsers/parsers/filesystem/fdisk.py) - parse commands: `fdisk -l`.
 - [ls.py](linux_parsers/parsers/filesystem/ls.py) - parse commands: `ls -la`.
 - [mount.py](linux_parsers/parsers/filesystem/mount.py) - parse file `/proc/mounts` or command `mount`.
+- [etc_fstab.py](linux_parsers/parsers/filesystem/etc_fstab.py) - parse file: `/etc/fstab`.
 - [stat.py](linux_parsers/parsers/filesystem/stat.py) - parse commands: `stat`.
 
 #### Network parsers

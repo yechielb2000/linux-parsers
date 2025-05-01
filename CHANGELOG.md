@@ -1,4 +1,8 @@
-### 0.2.4 12.04.2025
+### 0.2.5 01.05.2025
+
+- Added file parser: `/etc/fstab`.
+
+### 0.2.4 30.04.2025
 
 - Added command parser: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
 - Added file parser: `/proc/version`.
