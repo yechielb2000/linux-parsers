@@ -1,4 +1,16 @@
-### 0.2.4 12.04.2025
+### 0.2.5 10.06.2025
+
+- Added file parser: `/etc/fstab`.
+- Added logfile parser: `/var/log/secure`.
+- Added logfile parser: `/var/log/dpkg.log`.
+- Added logfile parser: `/var/log/auth.log`.
+- Added logfile parser: `/var/log/cron`.
+- Added logfile parser: `/var/log/syslog`.
+- Added logfile parser: `/var/log/wtmp`
+- Added logfile parser: `/var/log/utmp`
+- Added logfile parser: `/var/log/btmp`
+
+### 0.2.4 30.04.2025
 
 - Added command parser: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
 - Added file parser: `/proc/version`.

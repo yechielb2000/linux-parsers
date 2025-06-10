@@ -15,7 +15,7 @@ none              4034232         0   4034232   0% /dev
 none              4037644         4   4037640   1% /run
 none              4037644         0   4037644   0% /run/lock
 none              4037644         0   4037644   0% /run/shm
-none              4037644         0   4037644   0% /run/user
+none              4037644         0   4037644   0% /run/event
 tmpfs             4037644         0   4037644   0% /sys/fs/cgroup
 none              4037644        76   4037568   1% /mnt/wslg/versions.txt
 none              4037644        76   4037568   1% /mnt/wslg/doc

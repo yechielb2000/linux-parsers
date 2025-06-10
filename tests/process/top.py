@@ -3,7 +3,7 @@ from linux_parsers.parsers.process.top import parse_top
 
 def test_top():
     command_output = """
-top - 15:42:54 up  1:42,  0 user,  load average: 0.00, 0.00, 0.00
+top - 15:42:54 up  1:42,  0 event,  load average: 0.00, 0.00, 0.00
 Tasks:   9 total,   1 running,   8 sleeping,   0 stopped,   0 zombie
 %Cpu(s):  0.2 us,  0.2 sy,  0.0 ni, 99.5 id,  0.0 wa,  0.0 hi,  0.1 si,  0.0 st
 MiB Mem :   7886.0 total,   7479.7 free,    486.9 used,     98.0 buff/cache
@@ -26,7 +26,7 @@ MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   7399.1 avail Mem
     assert parsed_command
     assert len(parsed_command["process_list"]) == 9
     assert parsed_command["process_list"][0]["pid"] == "10"
-    assert parsed_command["process_list"][0]["user"] == "a"
+    assert parsed_command["process_list"][0]["event"] == "a"
     assert parsed_command["process_list"][0]["pr"] == "20"
     assert parsed_command["system"]["uptime"] == "1:42"
     assert parsed_command["tasks"]["sleeping"] == "8"

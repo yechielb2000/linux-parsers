@@ -26,5 +26,5 @@ alice    pts/1    192.168.1.101    14:30    0.00s  0.05s  0.02s vim file.txt
         "login": "14:30",
         "pcpu": "0.02s",
         "tty": "pts/1",
-        "user": "alice",
+        "event": "alice",
     }

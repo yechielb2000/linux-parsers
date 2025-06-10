@@ -35,6 +35,7 @@ print(parsed_command_output)
 - [fdisk.py](linux_parsers/parsers/filesystem/fdisk.py) - parse commands: `fdisk -l`.
 - [ls.py](linux_parsers/parsers/filesystem/ls.py) - parse commands: `ls -la`.
 - [mount.py](linux_parsers/parsers/filesystem/mount.py) - parse file `/proc/mounts` or command `mount`.
+- [etc_fstab.py](linux_parsers/parsers/filesystem/etc_fstab.py) - parse file: `/etc/fstab`.
 - [stat.py](linux_parsers/parsers/filesystem/stat.py) - parse commands: `stat`.
 
 #### Network parsers
@@ -93,6 +94,16 @@ print(parsed_command_output)
 - [etc_passwd.py](linux_parsers/parsers/users/etc_passwd.py) - parse file: `/etc/passwd`.
 - [etc_shadow.py](linux_parsers/parsers/users/etc_shadow.py) - parse file: `/etc/shadow`.
 - [useradd.py](linux_parsers/parsers/users/useradd.py) - parse commands: `useradd -D`.
+
+#### Logs parsers
+
+- [var_log_secure.py](linux_parsers/parsers/logs/var_log_secure.py) - parse logfile: `/var/log/secure`.
+- [var_log_dpkg.py](linux_parsers/parsers/logs/var_log_dpkg.py) - parse logfile: `/var/log/dpkg.log`.
+- [var_log_auth.py](linux_parsers/parsers/logs/var_log_auth.py) - parse logfile: `/var/log/auth.log`.
+- [var_log_cron.py](linux_parsers/parsers/logs/var_log_cron.py) - parse logfile: `/var/log/cron`.
+- [var_log_syslog.py](linux_parsers/parsers/logs/var_log_syslog.py) - parse logfile: `/var/log/syslog`.
+- [var_log_wtmp_btmp_utmp.py](linux_parsers/parsers/logs/var_log_wtmp_btmp_utmp.py) - parse logfiles: `/var/log/utmp`,
+  `/var/log/wtmp`, `/var/log/btmp`.
 
 ## Contribute
 

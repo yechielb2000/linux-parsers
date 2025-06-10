@@ -10,7 +10,7 @@ Desired=Unknown/Install/Remove/Purge/Hold
 +++-===============================-=============================================-============-================================================================================
 ii  ack                             3.7.0-1                                       all          grep-like program specifically for large source trees
 ii  adduser                         3.137                                         all          add and remove users and groups
-ii  apparmor                        3.1.7-1+b3                                    amd64        user-space parser utility for AppArmor
+ii  apparmor                        3.1.7-1+b3                                    amd64        event-space parser utility for AppArmor
 ii  apt                             2.9.5+kali1                                   amd64        commandline package manager    
 """
     parsed_output = parse_dpkg_l(command_output)

@@ -23,7 +23,7 @@ def parse_iostat(command_output: str) -> Dict[str, Any]:
         if line.startswith("avg-cpu:"):
             user, nice, system, iowait, steal, idle = avg_cpu_pattern.findall(lines.pop(0))
             parsed_output["avg_cpu"] = {
-                "user": user,
+                "event": user,
                 "nice": nice,
                 "system": system,
                 "iowait": iowait,

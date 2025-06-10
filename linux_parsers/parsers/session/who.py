@@ -5,7 +5,7 @@ from typing import Dict, Any
 def parse_who_a(command_output: str) -> Dict[str, Any]:
     """Parse `who -a` command output."""
     user_record_pattern = re.compile(
-        r"(?P<user>\S+)\s+(?P<tty>\S+)\s+(?P<date>\w+-\d+-\d+)\s(?P<time>\S+)\s+\((?P<from>.+)\)"
+        r"(?P<event>\S+)\s+(?P<tty>\S+)\s+(?P<date>\w+-\d+-\d+)\s(?P<time>\S+)\s+\((?P<from>.+)\)"
     )
     system_event_pattern = re.compile(r"(?P<event>.+)\b\s+(?P<date>\w+-\d+-\d+)\s(?P<time>\S+)")
     parsed_output = {"users_records": [], "system_records": {}}
