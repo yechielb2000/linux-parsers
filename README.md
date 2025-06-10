@@ -101,6 +101,7 @@ print(parsed_command_output)
 - [var_log_dpkg.py](linux_parsers/parsers/logs/var_log_dpkg.py) - parse logfile: `/var/log/dpkg.log`.
 - [var_log_auth.py](linux_parsers/parsers/logs/var_log_auth.py) - parse logfile: `/var/log/auth.log`.
 - [var_log_cron.py](linux_parsers/parsers/logs/var_log_cron.py) - parse logfile: `/var/log/cron`.
+- [var_log_syslog.py](linux_parsers/parsers/logs/var_log_syslog.py) - parse logfile: `/var/log/syslog`.
 
 ## Contribute
 
