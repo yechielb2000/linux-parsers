@@ -5,6 +5,7 @@
 - Added logfile parser: `/var/log/dpkg.log`.
 - Added logfile parser: `/var/log/auth.log`.
 - Added logfile parser: `/var/log/cron`.
+- Added logfile parser: `/var/log/syslog`.
 
 ### 0.2.4 30.04.2025
 
