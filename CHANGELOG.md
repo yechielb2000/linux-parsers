@@ -6,6 +6,9 @@
 - Added logfile parser: `/var/log/auth.log`.
 - Added logfile parser: `/var/log/cron`.
 - Added logfile parser: `/var/log/syslog`.
+- Added logfile parser: `/var/log/wtmp`
+- Added logfile parser: `/var/log/utmp`
+- Added logfile parser: `/var/log/btmp`
 
 ### 0.2.4 30.04.2025
 
