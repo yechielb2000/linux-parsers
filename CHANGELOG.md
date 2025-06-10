@@ -1,4 +1,4 @@
-### 0.2.5 01.05.2025
+### 0.2.5 10.06.2025
 
 - Added file parser: `/etc/fstab`.
 - Added logfile parser: `/var/log/secure`.
