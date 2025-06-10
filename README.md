@@ -102,6 +102,8 @@ print(parsed_command_output)
 - [var_log_auth.py](linux_parsers/parsers/logs/var_log_auth.py) - parse logfile: `/var/log/auth.log`.
 - [var_log_cron.py](linux_parsers/parsers/logs/var_log_cron.py) - parse logfile: `/var/log/cron`.
 - [var_log_syslog.py](linux_parsers/parsers/logs/var_log_syslog.py) - parse logfile: `/var/log/syslog`.
+- [var_log_wtmp_btmp_utmp.py](linux_parsers/parsers/logs/var_log_wtmp_btmp_utmp.py) - parse logfiles: `/var/log/utmp`,
+  `/var/log/wtmp`, `/var/log/btmp`.
 
 ## Contribute
 
