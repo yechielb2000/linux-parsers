@@ -85,6 +85,7 @@ print(parsed_command_output)
 - [uname.py](linux_parsers/parsers/system/uname.py) - parse commands: `uname -a`.
 - [vmstat.py](linux_parsers/parsers/system/vmstat.py) - parse commands: `vmstat`, `vmstat -adt`.
 - [ldd.py](linux_parsers/parsers/system/ldd.py) - parse commands: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
+- [lsmod.py](linux_parsers/parsers/system/lsmod.py) - parse commands: `lsmod`.
 
 #### Users parsers
 
@@ -104,6 +105,8 @@ print(parsed_command_output)
 - [var_log_syslog.py](linux_parsers/parsers/logs/var_log_syslog.py) - parse logfile: `/var/log/syslog`.
 - [var_log_wtmp_btmp_utmp.py](linux_parsers/parsers/logs/var_log_wtmp_btmp_utmp.py) - parse logfiles: `/var/log/utmp`,
   `/var/log/wtmp`, `/var/log/btmp`.
+- [var_log_udev.py](linux_parsers/parsers/logs/var_log_udev.py) - parse logfile: `/var/log/udev`.
+- [var_log_messages.py](linux_parsers/parsers/logs/var_log_messages.py) - parse logfile `/var/log/messages`.
 
 ## Contribute
 

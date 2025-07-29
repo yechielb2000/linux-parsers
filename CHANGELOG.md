@@ -1,3 +1,9 @@
+### 0.2.6 07.29.2025
+
+- Added logfile parser: `/var/log/udev`.
+- Added logfile parser: `/var/log/messages`.
+- Added command parser: `lsmod`.
+
 ### 0.2.5 10.06.2025
 
 - Added file parser: `/etc/fstab`.
