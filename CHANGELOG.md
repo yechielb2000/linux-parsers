@@ -1,6 +1,7 @@
 ### 0.2.6 07.29.2025
 
 - Added logfile parser: `/var/log/udev`.
+- Added logfile parser: `/var/log/messages`.
 
 ### 0.2.5 10.06.2025
 
