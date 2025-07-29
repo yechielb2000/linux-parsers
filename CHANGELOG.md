@@ -1,3 +1,7 @@
+### 0.2.6 07.29.2025
+
+- Added logfile parser: `/var/log/udev`.
+
 ### 0.2.5 10.06.2025
 
 - Added file parser: `/etc/fstab`.

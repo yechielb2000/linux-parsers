@@ -104,6 +104,7 @@ print(parsed_command_output)
 - [var_log_syslog.py](linux_parsers/parsers/logs/var_log_syslog.py) - parse logfile: `/var/log/syslog`.
 - [var_log_wtmp_btmp_utmp.py](linux_parsers/parsers/logs/var_log_wtmp_btmp_utmp.py) - parse logfiles: `/var/log/utmp`,
   `/var/log/wtmp`, `/var/log/btmp`.
+- [var_log_udev.py](linux_parsers/parsers/logs/var_log_udev.py) - parse logfile: `/var/log/udev`.
 
 ## Contribute
 
