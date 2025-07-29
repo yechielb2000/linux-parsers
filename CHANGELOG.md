@@ -2,6 +2,7 @@
 
 - Added logfile parser: `/var/log/udev`.
 - Added logfile parser: `/var/log/messages`.
+- Added command parser: `lsmod`.
 
 ### 0.2.5 10.06.2025
 
