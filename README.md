@@ -85,6 +85,7 @@ print(parsed_command_output)
 - [uname.py](linux_parsers/parsers/system/uname.py) - parse commands: `uname -a`.
 - [vmstat.py](linux_parsers/parsers/system/vmstat.py) - parse commands: `vmstat`, `vmstat -adt`.
 - [ldd.py](linux_parsers/parsers/system/ldd.py) - parse commands: `ldd --version`, `ldd -v <program>`, `ldd <program>`.
+- [lsmod.py](linux_parsers/parsers/system/lsmod.py) - parse commands: `lsmod`.
 
 #### Users parsers
 
