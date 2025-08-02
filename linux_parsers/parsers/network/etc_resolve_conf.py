@@ -1,7 +1,7 @@
 from typing import Dict, List
 
 
-def parse_etc_resolve_conf_file(command_output: str) -> Dict[str, List[str]]:
+def parse_etc_resolve(command_output: str) -> Dict[str, List[str]]:
     """Parse `/etc/resolve.conf` file."""
 
     lines = command_output.splitlines()

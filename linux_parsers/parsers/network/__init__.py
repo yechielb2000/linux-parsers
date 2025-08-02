@@ -1,5 +1,5 @@
 from linux_parsers.parsers.network.arp import parse_arp
-from linux_parsers.parsers.network.etc_resolve_conf import parse_etc_resolve_conf_file
+from linux_parsers.parsers.network.etc_resolve_conf import parse_etc_resolve
 from linux_parsers.parsers.network.ip import parse_ip_a, parse_ip_n, parse_ip_r
 from linux_parsers.parsers.network.iptables import parse_iptables
 from linux_parsers.parsers.network.netstat import parse_netstat
