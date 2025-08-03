@@ -52,7 +52,9 @@ def auto_parse_output(command: str, output: str) -> Optional[dict]:
     parser_func = _find_matching_parser(binary, subcommand, flags)
 
     if parser_func:
-        return parser_func(output)
-
+        try:
+            return parser_func(output)
+        except Exception as e:
+            ValueError(f"Expected a different command output.\n {e}")
     print(f"No matching parser found for: {command}")
     return None
