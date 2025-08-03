@@ -1,5 +1,6 @@
 from linux_parsers.command_detection import auto_parse_output, _parse_command_string, _find_matching_parser
 from linux_parsers.parsers.network import ip
+from linux_parsers.parsers.session import ac
 from tests.network.test_ip import IP_A_COMMAND_OUTPUT
 
 CMD = "ip a"
@@ -40,3 +41,11 @@ def test_if_parser_should_not_be_found():
     parsers = find_cmd_parsers(cmd)
     for parser in parsers:
         assert parser is None
+
+
+def test_specific_cmds():
+    cmds = ["ac -d", "ac -dp", "ac -p"]
+    parsers = find_cmd_parsers(cmds)
+    assert parsers[0] == ac.parse_ac_d
+    assert parsers[1] == ac.parse_ac_pd
+    assert parsers[2] == ac.parse_ac_p
