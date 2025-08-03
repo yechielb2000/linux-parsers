@@ -13,19 +13,68 @@ Let's say you want to parse `ps aux` command to get the processes in a better fo
 
 ```python
 import subprocess
+
 from linux_parsers.parsers.process.ps import parse_ps_aux
 
-# Run the ps aux command
 completed_process_result = subprocess.run(['ps', 'aux'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-# Get the command result
-ps_aux_command_output = completed_process_result.stdout
-# parse the command
-parsed_command_output = parse_ps_aux(ps_aux_command_output)
-# Print the parsed command result
-print(parsed_command_output)
+command_output = completed_process_result.stdout
+parsed_command_output = parse_ps_aux(command_output)
 ```
 
-## Hierarchy
+### 🔍 Auto-Detection of Parsers
+
+The package includes an auto-detection system that selects the correct parser based on the command used to
+generate the output.
+
+#### ✅ Supported Detection
+
+Auto-detection works for standard Linux binaries such as:
+
+- iptables
+- ss
+- ping
+- ac
+- ip
+
+and many more...
+
+You simply provide the command that was used to generate the output, and the library will choose the appropriate parser
+based on known binary + flags/signatures.
+
+```python
+from linux_parsers import auto_parse_output
+
+command = "ac -pd"
+command_output = "..."
+result = auto_parse_output(command, command_output)
+```
+
+If the command is known to the package and parseable, the function will detect the command output and return the command
+parsed back to you.
+
+#### ⚠️ Not Supported: File-Reader Commands
+
+Auto-detection **does not work** for commands like:
+
+- cat
+- head
+- tail
+- less
+- more
+
+These commands read files, and auto-detection does **not** try to guess which file was read or what format it contains.
+For
+such cases, you must call the appropriate parser directly based on the file content:
+
+```python
+from linux_parsers.parsers.users.etc_passwd import parse_etc_passwd_file
+
+with open("/etc/passwd") as f:
+    output = f.read()
+result = parse_etc_passwd_file(output)
+```
+
+## Available Parsers
 
 #### Filesystem parsers
 
