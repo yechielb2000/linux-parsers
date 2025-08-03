@@ -20,7 +20,7 @@ def test_command_parser():
 
 
 def test_parsers_registry():
-    cmds = ["ip a", "iptables -L -n -v", "ac -d", "ac -dp", "hwinfo --cpu"]
+    cmds = ["ufw app list", "mpstat -P ALL", "ip a", "iptables -L -n -v", "ac -d", "ac -dp", "hwinfo --cpu"]
     for cmd in cmds:
         binary, sub_cmd, flags = _parse_command_string(cmd)
         binary_registry = _find_matching_parser(binary, sub_cmd, flags)

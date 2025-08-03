@@ -62,7 +62,7 @@ NETWORK_REGISTRY = {
             "parser": ufw.parse_ufw_status,
         },
         {
-            "subcommand_aliases": ["app list"],  # TODO: check if this works
+            "subcommand_aliases": ["app"],  # assuming "list" comes right after.
             "must_have": set(),
             "one_of": set(),
             "parser": ufw.parse_ufw_app_list,
@@ -139,7 +139,7 @@ SYSTEM_REGISTRY = {
     ],
     "mpstat": [
         {
-            "must_have": {"-p"},  # TODO: test if ALL needed
+            "must_have": {"-P"},
             "one_of": set(),
             "parser": mpstat.parse_mpstat,
         }
