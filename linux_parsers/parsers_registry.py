@@ -23,7 +23,7 @@ NETWORK_REGISTRY = {
     "arp": [
         {
             "must_have": set(),
-            "one_of": set(),
+            "one_of": {"-i", "-e", "-n"},
             "parser": arp.parse_arp,
         }
     ],
