@@ -1,4 +1,4 @@
-from linux_parsers.parsers.network.etc_resolve_conf import parse_etc_resolve_conf_file
+from linux_parsers.parsers.network.etc_resolve_conf import parse_etc_resolve
 
 
 def test_etc_resolve_conf():
@@ -41,7 +41,7 @@ options timeout:10 attempts:5
 # Experimental options for DNS resolution
 options single-request    
 """
-    parsed_output = parse_etc_resolve_conf_file(command_output)
+    parsed_output = parse_etc_resolve(command_output)
     assert parsed_output["nameservers"] == [
         "8.8.8.8",
         "8.8.4.4",

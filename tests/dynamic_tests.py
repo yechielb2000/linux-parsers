@@ -24,7 +24,7 @@ NETWORK_COMMANDS = [
     ("ufw status", parse_ufw_status),
     ("ufw app list", parse_ufw_app_list),
     ("ping -c 3 127.0.0.1 ", parse_ping),
-    ("cat /etc/resolve.conf", parse_etc_resolve_conf_file),
+    ("cat /etc/resolve.conf", parse_etc_resolve),
     ("iptables -L -n -v", parse_iptables),
     ("netstat -tulpan", parse_netstat),
 ]

@@ -1,8 +1,6 @@
 from linux_parsers.parsers.network.ip import parse_ip_r, parse_ip_n, parse_ip_a
 
-
-def test_ip_a():
-    command_output = """
+IP_A_COMMAND_OUTPUT = """
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default 
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -20,7 +18,10 @@ def test_ip_a():
 3: wlan0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
     link/ether aa:bb:cc:dd:ee:ff brd ff:ff:ff:ff:ff:ff
     """
-    parsed_result = parse_ip_a(command_output)
+
+
+def test_ip_a():
+    parsed_result = parse_ip_a(IP_A_COMMAND_OUTPUT)
     assert parsed_result["1"]["iface"] == "lo"
     assert parsed_result["2"]["mtu"] == "1500"
     assert len(parsed_result["2"]["addresses"]) == 2
