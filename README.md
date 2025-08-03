@@ -28,17 +28,11 @@ generate the output.
 
 #### ✅ Supported Detection
 
-Auto-detection works for standard Linux binaries such as:
-
-- iptables
-- ss
-- ping
-- ac
-- ip
+Auto-detection works for standard Linux binaries such as: `iptables`, `ss`, `ping`, `ac`, `ip` etc...
 
 and many more...
 
-You simply provide the command that was used to generate the output, and the library will choose the appropriate parser
+You provide the command that was used to generate the output, and the library will choose the appropriate parser
 based on known binary + flags/signatures.
 
 ```python
@@ -49,18 +43,15 @@ command_output = "..."
 result = auto_parse_output(command, command_output)
 ```
 
+> **_NOTE:_** Please provide the command without any pipes (e.g., avoid ss -tulpn | grep LISTEN). Detection is based on
+> the original binary and flags only.
+
 If the command is known to the package and parseable, the function will detect the command output and return the command
 parsed back to you.
 
 #### ⚠️ Not Supported: File-Reader Commands
 
-Auto-detection **does not work** for commands like:
-
-- cat
-- head
-- tail
-- less
-- more
+Auto-detection **does not work** for commands like: `cat`, `head`, `tail`, `less`, `more` etc...
 
 These commands read files, and auto-detection does **not** try to guess which file was read or what format it contains.
 For
