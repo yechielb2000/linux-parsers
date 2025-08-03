@@ -34,8 +34,9 @@ def _find_matching_parser(binary: str, subcommand: Optional[str], flags: Set[str
             if subcommand not in entry["subcommand_aliases"]:
                 continue
 
-        if not entry["must_have"].issubset(flags):
-            continue
+        if entry["must_have"]:
+            if not entry["must_have"] == flags:
+                continue
 
         if entry["one_of"]:
             if not entry["one_of"] & flags:
