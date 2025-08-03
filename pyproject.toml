@@ -7,7 +7,7 @@ dependencies = [
 ]
 license = { text = "LICENSE" }
 description = "Simplest library for parsing linux commands and files"
-readme = { file = "README.txt", content-type = "text/markdown" }
+readme = { file = "README.md", content-type = "text/markdown" }
 keywords = ['linux', 'parser', 'command', 'file']
 authors = [
     { name = "Yechiel Babani", email = "yechielb2000@gmail.com" },
