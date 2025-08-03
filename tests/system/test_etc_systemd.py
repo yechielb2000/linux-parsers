@@ -1,7 +1,7 @@
 from linux_parsers.parsers.system.etc_systemd_file_conf import parse_etc_systemd_file_conf
 
 
-def test_etc_systemd_file_conf():
+def test_etc_systemd():
     command_output = """
 # the /etc/systemd/networkd.conf.d/ directory. The latter is generally
 # recommended.
