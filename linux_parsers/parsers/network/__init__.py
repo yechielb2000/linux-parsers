@@ -17,7 +17,7 @@ __all__ = [
     "parse_ufw_status",
     "parse_ufw_app_list",
     "parse_ping",
-    "parse_etc_resolve_conf_file",
+    "parse_etc_resolve",
     "parse_iptables",
     "parse_netstat",
 ]
