@@ -13,7 +13,12 @@ def _parse_command_string(command: str) -> Tuple[str, Optional[str], Set[Any]]:
     flags = set()
 
     for arg in args:
-        if arg.startswith("-"):
+        if arg.startswith("--"):
+            flags.add(arg)
+        elif arg.startswith("-") and len(arg) > 2:
+            for ch in arg[1:]:
+                flags.add(f"-{ch}")
+        elif arg.startswith("-"):
             flags.add(arg)
         elif subcommand is None:
             subcommand = arg
@@ -25,7 +30,7 @@ def _find_matching_parser(binary: str, subcommand: Optional[str], flags: Set[str
     candidates = PARSER_REGISTRY.get(binary, [])
 
     for entry in candidates:
-        if entry["subcommand_aliases"]:
+        if entry.get("subcommand_aliases"):
             if subcommand not in entry["subcommand_aliases"]:
                 continue
 
@@ -33,10 +38,10 @@ def _find_matching_parser(binary: str, subcommand: Optional[str], flags: Set[str
             continue
 
         if entry["one_of"]:
-            if not any(flags.intersection(group) for group in entry["one_of"]):
+            if not entry["one_of"] & flags:
                 continue
 
-        return entry["func"]
+        return entry["parser"]
 
     return None
 

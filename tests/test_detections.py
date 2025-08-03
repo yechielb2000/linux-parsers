@@ -17,3 +17,11 @@ def test_command_parser():
     assert subcommand == "a"
     assert flags == set()
     assert parser_func is ip.parse_ip_a
+
+
+def test_parsers_registry():
+    cmds = ["ip a", "iptables -L -n -v", "ac -d", "ac -dp", "hwinfo --cpu"]
+    for cmd in cmds:
+        binary, sub_cmd, flags = _parse_command_string(cmd)
+        binary_registry = _find_matching_parser(binary, sub_cmd, flags)
+        assert binary_registry is not None
