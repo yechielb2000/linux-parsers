@@ -1,6 +1,6 @@
 from collections import ChainMap
 
-from linux_parsers.parsers.filesystem import stat, df, du, ls, mount, fdisk, dpkg
+from linux_parsers.parsers.filesystem import stat, df, du, ls, mount, fdisk, packages
 from linux_parsers.parsers.network import ss, arp, ip, ping, ufw, netstat, iptables
 from linux_parsers.parsers.process import ps, top, jobs, lsipc, cgroups
 from linux_parsers.parsers.session import w, ac, who, last
@@ -253,7 +253,7 @@ FILESYSTEM_REGISTRY = {
         {
             "must_have": {"-l"},
             "one_of": set(),
-            "parser": dpkg.parse_dpkg_l,
+            "parser": packages.parse_dpkg_l,
         }
     ],
 }

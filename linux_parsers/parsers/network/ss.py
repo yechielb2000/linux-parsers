@@ -6,12 +6,12 @@ from typing import List, Dict, Any
 def parse_ss_tulnap(command_output: str) -> List[Dict[str, Any]]:
     """Parse `ss -tulnap` command output."""
     record_pattern = re.compile(
-        "(?P<State>[-_A-Z]+)\s+"
-        "(?P<RecvQ>\d+)\s+"
-        "(?P<SendQ>\d+)\s+"
-        "(?P<LocalAddress_Port>\S+:\S+)\s+"
-        "(?P<PeerAddress_Port>\S+:\S+)\s+"
-        "(?:(?P<Process>.+))?"
+        r"(?P<State>[-_A-Z]+)\s+"
+        r"(?P<RecvQ>\d+)\s+"
+        r"(?P<SendQ>\d+)\s+"
+        r"(?P<LocalAddress_Port>\S+:\S+)\s+"
+        r"(?P<PeerAddress_Port>\S+:\S+)\s+"
+        r"(?:(?P<Process>.+))?"
     )
     return [record.groupdict() for record in record_pattern.finditer(command_output)]
 
@@ -36,7 +36,7 @@ def parse_ss_s(command_output: str) -> Dict[str, Any]:
         line = lines.pop(0)
     parsed_command["transports"] = []
     while lines:
-        regex_result = re.search("(?P<protocol>\w+)\s+(?P<total>\d+)\s+(?P<ip>\d+)\s+(?P<ipv6>\d+)", line)
+        regex_result = re.search(r"(?P<protocol>\w+)\s+(?P<total>\d+)\s+(?P<ip>\d+)\s+(?P<ipv6>\d+)", line)
         if regex_result:
             parsed_command["transports"].append(regex_result.groupdict())
         line = lines.pop(0)
