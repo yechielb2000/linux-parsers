@@ -2,6 +2,7 @@ from linux_parsers.parsers.filesystem.packages import (
     parse_rpm_qa,
     parse_dpkg_l,
     parse_yum_list_installed,
+    parse_snap_list,
 )
 
 
@@ -154,3 +155,43 @@ kernel.x86_64                        3.10.0-1160.el7                 @anaconda
     assert package["release"] == "1160.el7"
     assert package["architecture"] == "x86_64"
     assert package["repository"] == "@anaconda"
+
+
+def test_parse_snap_list():
+    command_output = """Name               Version                     Rev    Tracking       Publisher   Notes
+core18             20211028                    2128   latest/stable  canonical✓  base
+core20             20220527                    1518   latest/stable  canonical✓  base
+firefox            105.0.1-1                   1969   latest/stable  mozilla✓    -
+gnome-3-38-2004    0+git.efb213a               119    latest/stable  canonical✓  -
+gtk-common-themes  0.1-81-g442e511             1535   latest/stable  canonical✓  -
+snap-store         41.3-64-gde65ba7            558    latest/stable  canonical✓  -
+snapd              2.57.5                      17336  latest/stable  canonical✓  snapd
+code               1.72.2-1665614327           108    latest/stable  vscode✓     classic
+discord            0.0.20                      140    latest/stable  discord✓    -
+"""
+
+    parsed_command = parse_snap_list(command_output)
+
+    assert len(parsed_command) == 9
+
+    # Test first package
+    assert parsed_command[0]["name"] == "core18"
+    assert parsed_command[0]["version"] == "20211028"
+    assert parsed_command[0]["rev"] == "2128"
+    assert parsed_command[0]["tracking"] == "latest/stable"
+    assert parsed_command[0]["publisher"] == "canonical✓"
+    assert parsed_command[0]["notes"] == "base"
+
+    # Test package with classic notes
+    code_snap = next(pkg for pkg in parsed_command if pkg["name"] == "code")
+    assert code_snap["version"] == "1.72.2-1665614327"
+    assert code_snap["notes"] == "classic"
+
+    # Test package with no notes (-)
+    firefox_snap = next(pkg for pkg in parsed_command if pkg["name"] == "firefox")
+    assert firefox_snap["version"] == "105.0.1-1"
+    assert firefox_snap["notes"] == "-"
+
+    # Test snapd package
+    snapd_snap = next(pkg for pkg in parsed_command if pkg["name"] == "snapd")
+    assert snapd_snap["notes"] == "snapd"

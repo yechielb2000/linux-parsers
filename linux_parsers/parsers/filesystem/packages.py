@@ -132,3 +132,57 @@ def parse_yum_list_installed(command_output: str) -> List[Dict]:
             )
 
     return parsed_packages
+
+
+def parse_snap_list(command_output: str) -> List[Dict[str, str]]:
+    """Parse `snap list` command output.
+
+    Parses the output of 'snap list' which shows all installed snap packages
+    on Ubuntu and other Linux distributions that support snap.
+
+    The command shows packages in the format:
+    Name    Version    Rev    Tracking       Publisher   Notes
+
+    Args:
+        command_output: Raw output from 'snap list' command
+
+    Returns:
+        List of dictionaries containing package information with keys:
+        - name: Package name
+        - version: Package version
+        - rev: Revision number
+        - tracking: Tracking channel
+        - publisher: Publisher name
+        - notes: Additional notes (like devmode, classic, etc.)
+    """
+    parsed_packages = []
+
+    lines = [line for line in command_output.splitlines() if line.strip()]
+
+    # Skip header line
+    if lines and lines[0].startswith("Name"):
+        lines = lines[1:]
+
+    for line in lines:
+        if not line.strip():
+            continue
+
+        # Split the line by whitespace
+        parts = line.split()
+        if len(parts) < 5:
+            continue
+
+        name = parts[0]
+        version = parts[1]
+        rev = parts[2]
+        tracking = parts[3]
+        publisher = parts[4]
+
+        # Notes might be missing or contain spaces, so join remaining parts
+        notes = " ".join(parts[5:]) if len(parts) > 5 else ""
+
+        parsed_packages.append(
+            {"name": name, "version": version, "rev": rev, "tracking": tracking, "publisher": publisher, "notes": notes}
+        )
+
+    return parsed_packages
