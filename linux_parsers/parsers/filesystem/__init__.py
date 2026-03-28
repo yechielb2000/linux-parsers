@@ -4,6 +4,7 @@ from linux_parsers.parsers.filesystem.packages import (
     parse_rpm_qa,
     parse_yum_list_installed,
     parse_snap_list,
+    parse_flatpak_list,
 )
 from linux_parsers.parsers.filesystem.du import parse_du
 from linux_parsers.parsers.filesystem.fdisk import parse_fdisk
@@ -18,6 +19,7 @@ __all__ = [
     "parse_rpm_qa",
     "parse_yum_list_installed",
     "parse_snap_list",
+    "parse_flatpak_list",
     "parse_fdisk",
     "parse_stat",
     "parse_du",

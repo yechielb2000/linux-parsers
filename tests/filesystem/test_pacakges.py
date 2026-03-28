@@ -1,8 +1,9 @@
-from linux_parsers.parsers.filesystem.packages import (
-    parse_rpm_qa,
+from linux_parsers.parsers.filesystem import (
     parse_dpkg_l,
-    parse_yum_list_installed,
+    parse_flatpak_list,
+    parse_rpm_qa,
     parse_snap_list,
+    parse_yum_list_installed,
 )
 
 
@@ -195,3 +196,30 @@ discord            0.0.20                      140    latest/stable  discord✓ 
     # Test snapd package
     snapd_snap = next(pkg for pkg in parsed_command if pkg["name"] == "snapd")
     assert snapd_snap["notes"] == "snapd"
+
+
+def test_flatpak_list():
+    command_output = """Name                           Application ID                            Version       Branch   Installation
+Bottles                        com.usebottles.bottles                    51.14         stable   system
+Calculator                     org.gnome.Calculator                      46.0          stable   system
+Cheese                         org.gnome.Cheese                          44.1          stable   system
+Document Viewer               org.gnome.Evince                          46.3.1        stable   system
+Extension Manager             com.mattjakeman.ExtensionManager          0.5.1         stable   system
+Files                         org.gnome.Nautilus                       46.2          stable   system
+Firefox                       org.mozilla.firefox                       131.0.3       stable   system
+GNOME Text Editor             org.gnome.TextEditor                      46.3          stable   system
+Image Viewer                  org.gnome.eog                            46.0          stable   system
+LibreOffice                   org.libreoffice.LibreOffice               24.8.2.1      stable   system
+Videos                        org.gnome.Totem                          43.0          stable   system
+VS Code                       com.visualstudio.code                     1.95.2        stable   user
+"""
+    parsed_command = parse_flatpak_list(command_output)
+    assert len(parsed_command) == 12
+    assert parsed_command[0]["name"] == "Bottles"
+    assert parsed_command[0]["application_id"] == "com.usebottles.bottles"
+    assert parsed_command[0]["version"] == "51.14"
+    assert parsed_command[0]["branch"] == "stable"
+    assert parsed_command[0]["installation"] == "system"
+    assert parsed_command[11]["name"] == "VS Code"
+    assert parsed_command[11]["application_id"] == "com.visualstudio.code"
+    assert parsed_command[11]["installation"] == "user"

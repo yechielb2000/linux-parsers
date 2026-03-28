@@ -70,7 +70,7 @@ result = parse_etc_passwd_file(output)
 #### Filesystem parsers
 
 - [df.py](linux_parsers/parsers/filesystem/df.py) - parse commands: `df`.
-- [packages.py](linux_parsers/parsers/filesystem/packages.py) - parse commands: `dpkg -l`, `yum list installed`, `rpm -qa`, `snap list`.
+- [packages.py](linux_parsers/parsers/filesystem/packages.py) - parse commands: `dpkg -l`, `yum list installed`, `rpm -qa`, `snap list`, `flatpak list`.
 - [du.py](linux_parsers/parsers/filesystem/du.py) - parse commands: `du -ab <path>`.
 - [fdisk.py](linux_parsers/parsers/filesystem/fdisk.py) - parse commands: `fdisk -l`.
 - [ls.py](linux_parsers/parsers/filesystem/ls.py) - parse commands: `ls -la`.

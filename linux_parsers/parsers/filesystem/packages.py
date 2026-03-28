@@ -186,3 +186,70 @@ def parse_snap_list(command_output: str) -> List[Dict[str, str]]:
         )
 
     return parsed_packages
+
+
+def parse_flatpak_list(command_output: str) -> List[Dict[str, str]]:
+    """Parse `flatpak list` command output.
+
+    Parses the output of 'flatpak list' which shows all installed Flatpak applications.
+
+    The command shows applications in the format:
+    Name                  Application ID                      Version      Branch   Installation
+
+    Args:
+        command_output: Raw output from 'flatpak list' command
+
+    Returns:
+        List of dictionaries containing application information with keys:
+        - name: Application name
+        - application_id: Unique application identifier
+        - version: Application version
+        - branch: Branch (usually stable, beta, etc.)
+        - installation: Installation location (system or user)
+    """
+    parsed_applications = []
+
+    lines = [line for line in command_output.splitlines() if line.strip()]
+
+    # Skip header line if present
+    if lines and lines[0].startswith("Name"):
+        lines = lines[1:]
+
+    for line in lines:
+        if not line.strip():
+            continue
+
+        # Split the line by tabs or multiple spaces
+        parts = re.split(r"\s{2,}|\t", line.strip())
+        if len(parts) < 5:
+            # Try splitting by single spaces if tab splitting doesn't work
+            parts = line.split()
+            if len(parts) < 5:
+                continue
+
+        # Extract fields
+        if len(parts) >= 5:
+            name = parts[0]
+            application_id = parts[1]
+            version = parts[2]
+            branch = parts[3]
+            installation = parts[4]
+        else:
+            # Fallback for simpler output format
+            name = parts[0] if len(parts) > 0 else ""
+            application_id = parts[1] if len(parts) > 1 else ""
+            version = parts[2] if len(parts) > 2 else ""
+            branch = parts[3] if len(parts) > 3 else ""
+            installation = parts[4] if len(parts) > 4 else ""
+
+        parsed_applications.append(
+            {
+                "name": name,
+                "application_id": application_id,
+                "version": version,
+                "branch": branch,
+                "installation": installation,
+            }
+        )
+
+    return parsed_applications
