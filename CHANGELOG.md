@@ -1,8 +1,9 @@
-### 0.2.7 <date>
+### 0.2.7 29.03.2026
 - Added command parser: `rpm -qa`.
 - Added command parser: `yum list installed`
 - Added command parser: `snap list`.
 - Changed `dpkg.py` to `packages.py` to have all packages parsers in one place.
+- Fixed warnings from regex.
 
 ### 0.2.6 08.03.2025
 
