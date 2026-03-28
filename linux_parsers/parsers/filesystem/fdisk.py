@@ -6,12 +6,12 @@ from typing import Dict, Any
 def parse_fdisk(command_output: str) -> Dict[str, Any]:
     """Parse `fdisk -l` command output."""
     partition_entry_pattern = re.compile(
-        "(?P<partition>/dev/\S+)\s+"
-        "(?P<start>[\d*]+)\s+"
-        "(?P<end>\d+)\s+"
-        "(?P<total>\d+)\s+"
-        "(?P<size>\S+)\s+"
-        "(?P<filesystem>.+)"
+        r"(?P<partition>/dev/\S+)\s+"
+        r"(?P<start>[\d*]+)\s+"
+        r"(?P<end>\d+)\s+"
+        r"(?P<total>\d+)\s+"
+        r"(?P<size>\S+)\s+"
+        r"(?P<filesystem>.+)"
     )
     disk_blocks = re.split(r"(?=Disk /dev/)", command_output.strip())
     disk_blocks = list(filter(str.strip, disk_blocks))

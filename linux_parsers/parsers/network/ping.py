@@ -6,20 +6,20 @@ from linux_parsers.parsers.exceptions import UnexpectedParseException
 
 def parse_ping(command_output: str) -> Dict[str, Any]:
     """Parse `ping` command output."""
-    rtt_pattern = re.compile(".+=\s(?P<min>\S+)/(?P<avg>\S+)/(?P<max>\S+)/(?P<mdev>.+)")
+    rtt_pattern = re.compile(r".+=\s(?P<min>\S+)/(?P<avg>\S+)/(?P<max>\S+)/(?P<mdev>.+)")
     header_pattern = re.compile(
-        "PING\s(?P<target>\S+)\s\((?P<resolvedIp>\S+)\)\s(?P<payloadSize>\d+)\((?P<totalPacketSize>\d+)\).+"
+        r"PING\s(?P<target>\S+)\s\((?P<resolvedIp>\S+)\)\s(?P<payloadSize>\d+)\((?P<totalPacketSize>\d+)\).+"
     )
     record_pattern = re.compile(
-        "(:?(?P<replaySize>\d+)\sbytes\sfrom\s(?P<from>\S+):\s)?"
-        "icmp_seq=(?P<icmpSeq>\d+)"
-        "(?:\sttl=(?P<ttl>\d+)\stime=(.+))?"
+        r"(:?(?P<replaySize>\d+)\sbytes\sfrom\s(?P<from>\S+):\s)?"
+        r"icmp_seq=(?P<icmpSeq>\d+)"
+        r"(?:\sttl=(?P<ttl>\d+)\stime=(.+))?"
     )
     statistics_pattern = re.compile(
-        "(?P<transmitted>\d+)\spackets\stransmitted,\s"
-        "(?P<received>\d+)\sreceived,\s"
-        "(?P<loss>\d+)%\spacket\sloss,\stime\s"
-        "(?P<time>\d+ms)"
+        r"(?P<transmitted>\d+)\spackets\stransmitted,\s"
+        r"(?P<received>\d+)\sreceived,\s"
+        r"(?P<loss>\d+)%\spacket\sloss,\stime\s"
+        r"(?P<time>\d+ms)"
     )
     lines = list(filter(lambda x: x.strip(), command_output.splitlines()))
     parsed_command = header_pattern.search(lines[0]).groupdict()

@@ -17,9 +17,9 @@ def parse_stat(command_output: str) -> Dict[str, Any]:
         r"Links:\s(?P<links>\d+)"
     )
     permissions_pattern = re.compile(
-        "Access:\s\((?P<octal>\d+)/(?P<symbolic>[-rwxd]+)\)\s+"
-        "Uid:\s\(\s+(?P<uid>\d+)/\s+(?P<event>\S+)\)\s+"
-        "Gid:\s\(\s+(?P<gid>\d+)/\s+(?P<group>\S+)\)"
+        r"Access:\s\((?P<octal>\d+)/(?P<symbolic>[-rwxd]+)\)\s+"
+        r"Uid:\s\(\s+(?P<uid>\d+)/\s+(?P<event>\S+)\)\s+"
+        r"Gid:\s\(\s+(?P<gid>\d+)/\s+(?P<group>\S+)\)"
     )
     time_pattern = re.compile(r"\w+:\s+(.+)")
     parsed_command = {}
