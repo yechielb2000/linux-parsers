@@ -1,3 +1,6 @@
+### 0.2.7 <date>
+- Added command parser: `rpm -qa`
+
 ### 0.2.6 08.03.2025
 
 - Added logfile parser: `/var/log/udev`.
