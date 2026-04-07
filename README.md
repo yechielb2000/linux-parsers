@@ -9,6 +9,11 @@
 
 ## How to use
 
+Install from pypi:
+```bash
+pip install linux-parsers
+```
+
 Let's say you want to parse `ps aux` command to get the processes in a better form.
 
 ```python
